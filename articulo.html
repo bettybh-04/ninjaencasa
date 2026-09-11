@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Artículo — Ninja en Casa</title>
+<meta name="description" content="Novedades y consejos sobre electrodomésticos Ninja.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:wght@500;600&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  .back-row{ padding:20px 0 0; }
+  .back-link{
+    display:inline-flex; align-items:center; gap:8px;
+    color:var(--steel-2); text-decoration:none; font-size:14px; font-weight:600;
+  }
+  .back-link:hover{ color:var(--chili); }
+</style>
+</head>
+<body>
+
+<div class="disclosure">
+  Sitio afiliado independiente · Como afiliados de Amazon, ganamos por compras que califican
+</div>
+
+<div class="nav-wrap">
+  <nav class="nav">
+    <a href="index.html#inicio" class="brand">
+      <svg class="brand-dial" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="20" cy="20" r="18" stroke="#E2A33D" stroke-width="2"/>
+        <circle cx="20" cy="20" r="9" fill="#3C3934"/>
+        <line x1="20" y1="20" x2="20" y2="8" stroke="#E2A33D" stroke-width="2.5" stroke-linecap="round"/>
+        <circle cx="20" cy="20" r="2.5" fill="#E2A33D"/>
+      </svg>
+      <span>Ninja en Casa</span>
+    </a>
+    <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">
+      <span></span>
+    </button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html#categorias">Categorías</a></li>
+      <li><a href="index.html#freidoras">Freidoras</a></li>
+      <li><a href="index.html#batidoras">Batidoras</a></li>
+      <li><a href="index.html#sartenes">Sartenes</a></li>
+      <li><a href="comparador.html">Comparador</a></li>
+      <li><a href="perfil.html">Descubre tu perfil</a></li>
+      <li><a href="index.html#guias">Guías</a></li>
+      <li><a href="novedades.html">Novedades</a></li>
+      <li><a href="index.html#nosotros">Nosotros</a></li>
+    </ul>
+  </nav>
+</div>
+
+<div class="container back-row">
+  <a href="novedades.html" class="back-link">← Volver a Novedades</a>
+</div>
+
+<div id="content"></div>
+
+<footer style="margin-top:0;">
+  <div class="container">
+    <div class="footer-bottom" style="border-top:1px solid rgba(245,239,228,0.12); padding-top:20px;">
+      <span>© 2026 Ninja en Casa</span>
+      <span>Sitio afiliado independiente — sin relación oficial con Ninja Kitchen</span>
+    </div>
+    <p class="legal-note">Como afiliados de Amazon, ganamos por compras que califican realizadas a través de los enlaces de este sitio, de acuerdo con el Programa de Afiliados de Amazon (Amazon Associates).</p>
+  </div>
+</footer>
+
+<script src="blog.js"></script>
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const id = params.get('id');
+  const post = posts.find(x => x.id === id);
+  const content = document.getElementById('content');
+
+  if (!post) {
+    content.innerHTML = `
+      <div class="container" style="padding:60px 0;">
+        <h1>Artículo no encontrado</h1>
+        <p>Puede que el enlace esté roto o el artículo ya no exista.</p>
+        <a href="novedades.html" class="btn btn-primary" style="margin-top:16px; display:inline-flex;">Volver a Novedades</a>
+      </div>`;
+  } else {
+    document.title = post.title + " — Ninja en Casa";
+
+    const bodyHTML = post.body.map(block => {
+      if (block.type === "h2") return `<h2>${block.text}</h2>`;
+      if (block.type === "p") return `<p>${block.text}</p>`;
+      if (block.type === "ul") return `<ul>${block.items.map(i => `<li>${i}</li>`).join("")}</ul>`;
+      return "";
+    }).join("");
+
+    content.innerHTML = `
+      <div class="article-hero">
+        <div class="container">
+          <span class="kicker">${post.kicker}</span>
+          <h1>${post.title}</h1>
+          <p>${post.excerpt}</p>
+          <div class="article-meta">
+            <span>${post.date}</span><span>${post.readTime}</span>
+          </div>
+        </div>
+      </div>
+      <div class="article-body">
+        ${bodyHTML}
+      </div>`;
+  }
+
+  const navToggle = document.getElementById('navToggle');
+  const navLinks = document.getElementById('navLinks');
+  navToggle.addEventListener('click', () => {
+    const open = navLinks.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded', open);
+  });
+  navLinks.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+      navToggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+</script>
+<script src="popup-suscriptores.js" defer></script>
+</body>
+</html>

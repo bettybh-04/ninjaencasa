@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Descubre tu perfil en la cocina — Ninja en Casa</title>
+<meta name="description" content="Responde 6 preguntas y descubre qué producto Ninja se ajusta mejor a tu forma de cocinar.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:wght@500;600&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  body.quiz-body{ background:var(--ink); color:var(--cream); }
+  .quiz-nav .nav-links a{ color:var(--cream-2); }
+
+  .quiz-wrap{
+    max-width:640px; margin:0 auto;
+    padding:48px 24px 100px;
+    min-height:70vh;
+  }
+
+  .progress-track{
+    height:6px; border-radius:4px; background:rgba(245,239,228,0.14);
+    overflow:hidden; margin-bottom:14px;
+  }
+  .progress-fill{ height:100%; background:var(--crisp); transition:width .35s ease; }
+  .progress-label{
+    font-family:'IBM Plex Mono',monospace; font-size:12.5px;
+    color:rgba(245,239,228,0.55); margin-bottom:36px;
+  }
+
+  .q-title{
+    font-size:clamp(24px,4vw,32px);
+    margin:0 0 28px;
+    max-width:22ch;
+    color:var(--cream);
+  }
+
+  .q-slide{
+    animation:slideIn .35s ease;
+  }
+  @keyframes slideIn{
+    from{ opacity:0; transform:translateX(24px); }
+    to{ opacity:1; transform:translateX(0); }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .q-slide{ animation:none; }
+  }
+
+  .opt-block{
+    display:flex; align-items:center; gap:16px;
+    width:100%;
+    min-height:64px;
+    padding:16px 20px;
+    margin-bottom:14px;
+    background:rgba(245,239,228,0.05);
+    border:1.5px solid rgba(245,239,228,0.14);
+    border-radius:14px;
+    color:var(--cream);
+    font-size:15.5px; font-weight:500;
+    text-align:left;
+    cursor:pointer;
+    transition:border-color .15s ease, background .15s ease;
+  }
+  .opt-block:hover{ border-color:var(--crisp); background:rgba(226,163,61,0.08); }
+  .opt-block .opt-icon{ font-size:24px; flex:none; }
+  .opt-block .opt-sub{ display:block; font-size:12.5px; color:rgba(245,239,228,0.5); font-weight:400; margin-top:3px;}
+
+  .q-nav{ margin-top:24px; }
+  .btn-prev{
+    background:none; border:none; color:rgba(245,239,228,0.55);
+    font-size:14px; font-weight:600; cursor:pointer;
+    display:inline-flex; align-items:center; gap:6px;
+  }
+  .btn-prev:hover{ color:var(--crisp); }
+
+  /* ---- resultados ---- */
+  .result-wrap{ animation:slideIn .4s ease; }
+
+  .profile-block{
+    text-align:center;
+    padding:36px 20px 8px;
+    margin-bottom:12px;
+  }
+  .profile-emoji{ font-size:54px; margin-bottom:14px; }
+  .profile-name{
+    color:var(--crisp);
+    font-size:clamp(28px,4vw,38px);
+    margin:0 0 14px;
+  }
+  .profile-desc{
+    color:rgba(245,239,228,0.65);
+    font-size:15.5px; line-height:1.6;
+    max-width:48ch; margin:0 auto;
+  }
+
+  .result-card{
+    background:#fff; color:var(--ink);
+    border-radius:18px;
+    padding:28px;
+    margin-top:36px;
+  }
+  .result-card.secondary{
+    background:rgba(245,239,228,0.06); color:var(--cream);
+    border:1px solid rgba(245,239,228,0.14);
+  }
+  .result-card.secondary .rc-marca, .result-card.secondary .price-badge{ color:rgba(245,239,228,0.6) !important; }
+  .also-label{
+    font-family:'IBM Plex Mono',monospace; font-size:12px; color:rgba(245,239,228,0.5);
+    text-transform:uppercase; letter-spacing:0.08em; margin:32px 0 12px;
+  }
+
+  .rc-top{ display:flex; gap:20px; align-items:flex-start; flex-wrap:wrap; }
+  .rc-img{
+    width:120px; height:120px; border-radius:12px; flex:none;
+    display:flex; align-items:center; justify-content:center;
+    background:var(--cream); overflow:hidden;
+    font-size:10px; color:var(--steel-2); text-align:center; padding:8px;
+  }
+  .rc-img img{ width:100%; height:100%; object-fit:contain; }
+  .rc-marca{ font-family:'IBM Plex Mono',monospace; font-size:11.5px; color:var(--steel-2); text-transform:uppercase; }
+  .rc-name{ font-size:19px; font-weight:700; margin:2px 0 8px; }
+  .rc-destacado{ font-size:13.5px; color:var(--steel-2); margin:0 0 10px; }
+
+  .rc-pills{ display:flex; flex-wrap:wrap; gap:8px; margin:14px 0; }
+  .rc-pill{
+    font-family:'IBM Plex Mono',monospace; font-size:11.5px; font-weight:600;
+    background:var(--cream); color:var(--ink);
+    padding:5px 11px; border-radius:999px;
+  }
+  .result-card.secondary .rc-pill{ background:rgba(245,239,228,0.1); color:var(--cream); }
+
+  .compat-row{ margin:16px 0; }
+  .compat-label{ font-size:12.5px; color:var(--steel-2); margin-bottom:6px; }
+  .result-card.secondary .compat-label{ color:rgba(245,239,228,0.55); }
+  .compat-track{ height:8px; border-radius:5px; background:var(--cream-2); overflow:hidden; }
+  .result-card.secondary .compat-track{ background:rgba(245,239,228,0.14); }
+  .compat-fill{ height:100%; background:var(--herb); }
+  .compat-value{ font-family:'IBM Plex Mono',monospace; font-weight:700; color:var(--herb); font-size:13px; margin-top:5px; }
+
+  .rc-buttons{ display:flex; gap:12px; flex-wrap:wrap; margin-top:18px; }
+  .rc-buttons a{ flex:1; min-width:180px; text-align:center; }
+
+  .btn-again{
+    display:inline-flex; align-items:center; gap:8px;
+    margin:44px auto 0; justify-content:center;
+    background:none; border:2px solid var(--crisp); color:var(--crisp);
+    padding:14px 26px; border-radius:999px; font-weight:700; font-size:14.5px;
+    cursor:pointer; width:100%;
+  }
+  .btn-again:hover{ background:var(--crisp); color:var(--ink); }
+
+  .relax-note{
+    font-size:12.5px; color:rgba(245,239,228,0.5);
+    text-align:center; margin-top:18px;
+  }
+</style>
+</head>
+<body class="quiz-body">
+
+<div class="disclosure">
+  Sitio afiliado independiente · Como afiliados de Amazon, ganamos por compras que califican
+</div>
+
+<div class="nav-wrap quiz-nav">
+  <nav class="nav">
+    <a href="index.html#inicio" class="brand">
+      <svg class="brand-dial" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="20" cy="20" r="18" stroke="#E2A33D" stroke-width="2"/>
+        <circle cx="20" cy="20" r="9" fill="#3C3934"/>
+        <line x1="20" y1="20" x2="20" y2="8" stroke="#E2A33D" stroke-width="2.5" stroke-linecap="round"/>
+        <circle cx="20" cy="20" r="2.5" fill="#E2A33D"/>
+      </svg>
+      <span>Ninja en Casa</span>
+    </a>
+    <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">
+      <span></span>
+    </button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html#categorias">Categorías</a></li>
+      <li><a href="comparador.html">Comparador</a></li>
+      <li><a href="perfil.html">Descubre tu perfil</a></li>
+      <li><a href="index.html#guias">Guías</a></li>
+      <li><a href="index.html#nosotros">Nosotros</a></li>
+    </ul>
+  </nav>
+</div>
+
+<div class="quiz-wrap" id="quizWrap"></div>
+
+<script src="data.js"></script>
+<script>
+/* ============================================================
+   6 PREGUNTAS — cada opción lleva un "effect" que se aplica
+   a las respuestas acumuladas (answers).
+============================================================ */
+const QUESTIONS = [
+  {
+    title: "¿Qué necesitas para tu cocina?",
+    key: "subcategoria",
+    options: [
+      { icon:"🍟", text:"Una freidora de aire", sub:"Frituras sin aceite, crujientes", value:"freidoras" },
+      { icon:"🥤", text:"Una batidora o robot", sub:"Smoothies, masas, picar", value:"batidoras" },
+      { icon:"🍳", text:"Sartenes o menaje", sub:"Para saltear y sofreír", value:"sartenes" }
+    ]
+  },
+  {
+    title: "¿Para cuántas personas cocinas normalmente?",
+    key: "hogar",
+    options: [
+      { icon:"👤", text:"1-2 personas", sub:"Uso individual o en pareja", value:"chico", weight:0.5 },
+      { icon:"👥", text:"3-4 personas", sub:"El hogar típico", value:"medio", weight:0.8 },
+      { icon:"👨‍👩‍👧‍👦", text:"5 o más", sub:"Familia grande o batch cooking", value:"grande", weight:1 }
+    ]
+  },
+  {
+    title: "¿Cuánto tiempo esperas que te dure?",
+    key: "garantia",
+    options: [
+      { icon:"🔁", text:"No me preocupa mucho", sub:"Prefiero probar y ya veré", value:0 },
+      { icon:"📆", text:"Que aguante varios años", sub:"Uso normal, sin prisa por cambiarlo", value:2 },
+      { icon:"🛡️", text:"Quiero que dure muchísimo", sub:"Inversión a largo plazo", value:3 }
+    ]
+  },
+  {
+    title: "¿Qué tan importante es que sea fácil de limpiar?",
+    key: "limpieza",
+    options: [
+      { icon:"🤷", text:"No es lo que más me importa", sub:"", value:"baja", weight:0 },
+      { icon:"🧽", text:"Bastante importante", sub:"", value:"media", weight:0.6 },
+      { icon:"✨", text:"Es mi prioridad número uno", sub:"Apto lavavajillas a ser posible", value:"alta", weight:1 }
+    ]
+  },
+  {
+    title: "¿Qué valoras más en tu electrodoméstico?",
+    key: "prioridad",
+    options: [
+      { icon:"😌", text:"Que sea cómodo y fácil de usar", sub:"", scores:["facilidad_uso","limpieza"] },
+      { icon:"💪", text:"Que tenga potencia y aguante", sub:"", scores:["potencia","durabilidad"] },
+      { icon:"📦", text:"Que tenga buena capacidad", sub:"Para cocinar de una sola vez", scores:["capacidad"] },
+      { icon:"💰", text:"La mejor relación calidad-precio", sub:"", scores:["calidad_precio"] }
+    ]
+  },
+  {
+    title: "¿Cuál es tu presupuesto?",
+    key: "presupuesto",
+    options: [
+      { icon:"💚", text:"Económico", sub:"Algo práctico y sin lujos", value:"bajo" },
+      { icon:"💛", text:"Medio", sub:"Buena relación calidad-precio", value:"medio" },
+      { icon:"🏆", text:"Sin límite", sub:"Quiero lo mejor de su categoría", value:"alto" }
+    ]
+  }
+];
+
+let step = 0;
+let answers = {};
+let resultShown = false;
+
+function renderQuestion(){
+  const wrap = document.getElementById("quizWrap");
+  const q = QUESTIONS[step];
+  const pct = Math.round((step / QUESTIONS.length) * 100);
+  wrap.innerHTML = `
+    <div class="progress-track"><div class="progress-fill" style="width:${pct}%"></div></div>
+    <div class="progress-label">Pregunta ${step+1} de ${QUESTIONS.length}</div>
+    <div class="q-slide">
+      <h1 class="q-title">${q.title}</h1>
+      <div id="optsWrap"></div>
+      <div class="q-nav">
+        ${step > 0 ? `<button class="btn-prev" id="prevBtn">← Anterior</button>` : ""}
+      </div>
+    </div>
+  `;
+  const optsWrap = document.getElementById("optsWrap");
+  q.options.forEach((opt, i) => {
+    const btn = document.createElement("button");
+    btn.className = "opt-block";
+    btn.innerHTML = `<span class="opt-icon">${opt.icon}</span><span>${opt.text}${opt.sub ? `<span class="opt-sub">${opt.sub}</span>` : ""}</span>`;
+    btn.addEventListener("click", () => selectOption(q, opt));
+    optsWrap.appendChild(btn);
+  });
+  const prevBtn = document.getElementById("prevBtn");
+  if (prevBtn) prevBtn.addEventListener("click", () => { step--; renderQuestion(); });
+}
+
+function selectOption(q, opt){
+  answers[q.key] = opt;
+  if (step < QUESTIONS.length - 1){
+    step++;
+    renderQuestion();
+  } else {
+    renderResult();
+  }
+}
+
+function restart(){
+  step = 0; answers = {}; resultShown = false;
+  renderQuestion();
+}
+
+/* ============================================================
+   FILTRADO + PUNTUACIÓN
+============================================================ */
+function passesFilters(p, relax){
+  if (p.subcategoria !== answers.subcategoria.value) return false;
+  if (!relax.precio && p.rango_precio !== answers.presupuesto.value) return false;
+  if (!relax.garantia && (p.specs.garantia_años || 0) < answers.garantia.value) return false;
+  if (!relax.limpieza && answers.limpieza.value === "alta" && !p.specs.apto_lavavajillas) return false;
+  if (!relax.capacidad && answers.hogar.value === "grande" && (p.scores.capacidad || 0) < 6) return false;
+  return true;
+}
+
+function scoreProduct(p){
+  const priorityKeys = answers.prioridad.scores;
+  const priorityAvg = priorityKeys.reduce((a,k) => a + (p.scores[k]||0), 0) / priorityKeys.length;
+  const priorityPts = (priorityAvg/10) * 30;
+
+  const otherKeys = Object.keys(p.scores).filter(k => !priorityKeys.includes(k));
+  const otherAvg = otherKeys.reduce((a,k) => a + (p.scores[k]||0), 0) / otherKeys.length;
+  const otherPts = (otherAvg/10) * 25;
+
+  const garantiaPts = Math.min((p.specs.garantia_años||0)/3, 1) * 5;
+  const valoracionPts = ((p.reviews && p.reviews.valoracion_media) ? p.reviews.valoracion_media/5 : 0) * 10;
+
+  const hogarWeight = answers.hogar.weight || 0.5;
+  const capacidadPts = ((p.scores.capacidad||0)/10) * 15 * hogarWeight;
+
+  const limpiezaWeight = answers.limpieza.weight || 0;
+  const limpiezaPts = ((p.scores.limpieza||0)/10) * 10 * limpiezaWeight;
+
+  return Math.round(priorityPts + otherPts + garantiaPts + valoracionPts + capacidadPts + limpiezaPts);
+}
+
+function getRecommendation(){
+  const relaxOrder = ["precio","garantia","limpieza","capacidad"];
+  let relax = { precio:false, garantia:false, limpieza:false, capacidad:false };
+  let pool = products.filter(p => passesFilters(p, relax));
+  let relaxedSteps = 0;
+
+  for (const key of relaxOrder){
+    if (pool.length) break;
+    relax[key] = true;
+    relaxedSteps++;
+    pool = products.filter(p => passesFilters(p, relax));
+  }
+  if (!pool.length){
+    pool = products.filter(p => p.subcategoria === answers.subcategoria.value);
+    relaxedSteps = relaxOrder.length;
+  }
+
+  const scored = pool.map(p => ({ p, score: scoreProduct(p) })).sort((a,b) => b.score - a.score);
+  return { top: scored[0], second: scored[1], relaxedSteps };
+}
+
+/* ============================================================
+   PERFILES
+============================================================ */
+function getProfile(){
+  const a = answers;
+  const prioKey = a.prioridad.scores[0];
+
+  if (a.hogar.value === "grande" && prioKey === "capacidad"){
+    return { emoji:"🧺", name:"El Organizado del Batch Cooking",
+      desc:"Cocinas para varios días de una sola vez. Necesitas capacidad de sobra y un aparato que aguante el uso intensivo semana tras semana." };
+  }
+  if (a.presupuesto.value === "alto" && (prioKey === "potencia" || prioKey === "capacidad")){
+    return { emoji:"🏆", name:"El Exigente",
+      desc:"No te conformas con lo básico. Si vas a comprar un electrodoméstico, quieres el que mejor rinda en su categoría, sin fijarte tanto en el precio." };
+  }
+  if (a.limpieza.value === "alta" && prioKey === "facilidad_uso"){
+    return { emoji:"✨", name:"El Práctico de la Limpieza Fácil",
+      desc:"Lo que no se limpia en dos minutos, no entra en tu cocina. Priorizas lo funcional por encima de casi todo lo demás." };
+  }
+  if ((a.presupuesto.value === "bajo" || a.presupuesto.value === "medio") && prioKey === "calidad_precio"){
+    return { emoji:"💰", name:"El Cazador de Chollos",
+      desc:"Sabes exactamente lo que necesitas y no piensas pagar de más por marketing. Buscas el equilibrio perfecto entre precio y resultado." };
+  }
+  if (a.hogar.value === "medio" || a.hogar.value === "grande"){
+    return { emoji:"🥘", name:"El Chef de Fin de Semana",
+      desc:"Cocinar para varios te encanta y le dedicas tiempo. Necesitas un aparato que aguante el ritmo de una comida familiar entera." };
+  }
+  return { emoji:"🍳", name:"El Cocinero Exprés",
+    desc:"Quieres comer bien sin complicarte: encender, esperar, listo. Buscas algo simple que no te robe la tarde ni la cabeza." };
+}
+
+/* ============================================================
+   RENDER RESULTADO
+============================================================ */
+const priceRangeLabelQuiz = { bajo:"$ Económico", medio:"$$ Medio", alto:"$$$ Alto" };
+
+function productCardResultHTML(p, score, secondary){
+  const img = p.image_url ? `<img src="${p.image_url}" alt="${p.name}">` : placeholderThumbHTML(p.subcategoria);
+  return `
+    <div class="result-card ${secondary ? "secondary" : ""}">
+      <div class="rc-top">
+        <div class="rc-img">${img}</div>
+        <div style="flex:1; min-width:180px;">
+          <div class="rc-marca">${p.marca || "Ninja"}</div>
+          <div class="rc-name">${p.name}</div>
+          ${p.destacado_editorial ? `<p class="rc-destacado">${p.destacado_editorial}</p>` : ""}
+          <span class="price-badge ${p.rango_precio}">${priceRangeLabelQuiz[p.rango_precio] || p.rango_precio}</span>
+        </div>
+      </div>
+      <div class="rc-pills">
+        ${p.specs.potencia_w ? `<span class="rc-pill">⚡ ${p.specs.potencia_w} W</span>` : ""}
+        ${p.specs.capacidad ? `<span class="rc-pill">📦 ${p.specs.capacidad}</span>` : ""}
+        <span class="rc-pill">🍽️ ${p.subcategoria}</span>
+        ${p.specs.garantia_años ? `<span class="rc-pill">🛡️ ${p.specs.garantia_años} años</span>` : ""}
+      </div>
+      <div class="compat-row">
+        <div class="compat-label">Tu puntuación de compatibilidad</div>
+        <div class="compat-track"><div class="compat-fill" style="width:${Math.min(score,100)}%"></div></div>
+        <div class="compat-value">${Math.min(score,100)}/100</div>
+      </div>
+      <div class="rc-buttons">
+        <a href="${p.affiliate_link}" class="btn-amazon-sm" target="_blank" rel="nofollow sponsored noopener" style="padding:14px;">🛒 Comprar en Amazon</a>
+        <a href="producto.html?id=${p.id}" class="btn-details" style="padding:14px; text-decoration:none;">Ver ficha completa</a>
+      </div>
+    </div>`;
+}
+
+function renderResult(){
+  resultShown = true;
+  const wrap = document.getElementById("quizWrap");
+  const { top, second, relaxedSteps } = getRecommendation();
+  const profile = getProfile();
+
+  if (!top){
+    wrap.innerHTML = `<div class="result-wrap"><p style="text-align:center; padding:60px 0;">No encontramos un producto para estas respuestas todavía. ¡Prueba de nuevo!</p>
+    <button class="btn-again" id="againBtn">↩ Repetir el test</button></div>`;
+    document.getElementById("againBtn").addEventListener("click", restart);
+    return;
+  }
+
+  const closeSecond = second && (top.score - second.score) <= 15;
+
+  wrap.innerHTML = `
+    <div class="result-wrap">
+      <div class="profile-block">
+        <div class="profile-emoji">${profile.emoji}</div>
+        <h1 class="profile-name">${profile.name}</h1>
+        <p class="profile-desc">${profile.desc}</p>
+      </div>
+
+      ${productCardResultHTML(top.p, top.score, false)}
+
+      ${closeSecond ? `
+        <div class="also-label">También podría interesarte</div>
+        ${productCardResultHTML(second.p, second.score, true)}
+      ` : ""}
+
+      ${relaxedSteps > 0 ? `<p class="relax-note">Ampliamos un poco tu búsqueda para poder mostrarte una recomendación con estos criterios.</p>` : ""}
+
+      <button class="btn-again" id="againBtn">↩ Repetir el test</button>
+    </div>
+  `;
+  document.getElementById("againBtn").addEventListener("click", restart);
+}
+
+renderQuestion();
+
+const navToggle = document.getElementById('navToggle');
+const navLinks = document.getElementById('navLinks');
+navToggle.addEventListener('click', () => {
+  const open = navLinks.classList.toggle('open');
+  navToggle.setAttribute('aria-expanded', open);
+});
+navLinks.querySelectorAll('a').forEach(a => {
+  a.addEventListener('click', () => {
+    navLinks.classList.remove('open');
+    navToggle.setAttribute('aria-expanded', 'false');
+  });
+});
+</script>
+
+<script src="popup-suscriptores.js" defer></script>
+</body>
+</html>

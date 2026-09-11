@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ninja en Casa — Guías y comparativas de electrodomésticos Ninja</title>
+<meta name="description" content="Guías, comparativas y recomendaciones sobre freidoras de aire, batidoras y sartenes Ninja. Sitio afiliado independiente de Amazon.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:wght@500;600&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="disclosure">
+  Sitio afiliado independiente · Como afiliados de Amazon, ganamos por compras que califican
+</div>
+
+<div class="nav-wrap">
+  <nav class="nav">
+    <a href="#inicio" class="brand">
+      <svg class="brand-dial" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="20" cy="20" r="18" stroke="#E2A33D" stroke-width="2"/>
+        <circle cx="20" cy="20" r="9" fill="#3C3934"/>
+        <line x1="20" y1="20" x2="20" y2="8" stroke="#E2A33D" stroke-width="2.5" stroke-linecap="round"/>
+        <circle cx="20" cy="20" r="2.5" fill="#E2A33D"/>
+      </svg>
+      <span>Ninja en Casa</span>
+    </a>
+    <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">
+      <span></span>
+    </button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#productos">Categorías</a></li>
+      <li><a href="#productos" data-filter-link="freidoras">Freidoras</a></li>
+      <li><a href="#productos" data-filter-link="batidoras">Batidoras</a></li>
+      <li><a href="#productos" data-filter-link="sartenes">Sartenes</a></li>
+      <li><a href="comparador.html">Comparador</a></li>
+      <li><a href="perfil.html">Descubre tu perfil</a></li>
+      <li><a href="#guias">Guías</a></li>
+      <li><a href="#nosotros">Nosotros</a></li>
+    </ul>
+  </nav>
+</div>
+
+<section class="hero" id="inicio">
+  <div class="hero-mosaic" aria-hidden="true">
+    <div class="mosaic-img"><img src="img/airfryer-max-xl-clean.jpg" alt=""></div>
+    <div class="mosaic-img"><img src="img/foodi-smart-grill-clean.jpg" alt=""></div>
+    <div class="mosaic-img"><img src="img/blender-bn800-clean.jpg" alt=""></div>
+    <div class="mosaic-img"><img src="img/double-oven-clean.jpg" alt=""></div>
+  </div>
+  <div class="hero-overlay"></div>
+
+  <div class="container hero-content">
+    <div class="hero-badge">
+      <span class="num">100%</span>
+      <span class="lbl">COMPARATIVA<br>INDEPENDIENTE</span>
+    </div>
+    <div class="eyebrow">Guías de cocina Ninja · Actualizado 2026</div>
+    <h1>Elige tu Ninja <em>sin dudar</em></h1>
+    <p class="tagline">La excelencia define el producto.</p>
+    <p class="lead">Comparativas honestas, pensadas para que elijas rápido — como quien ya los tiene en casa.</p>
+    <div class="hero-actions">
+      <a href="#productos" class="btn btn-primary">Ver categorías →</a>
+      <a href="#guias" class="btn btn-outline">Guías de compra</a>
+    </div>
+    <div class="hero-stat mono"><span id="totalModelos">7</span> modelos · sitio afiliado, sin relación oficial con Ninja</div>
+  </div>
+</section>
+
+<section class="section alt" id="productos">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <span class="kicker">Selección actual</span>
+        <h2>Modelos que vale la pena mirar</h2>
+        <p>Ficha rápida de cada uno: para quién es, qué tan bien puntúa en uso diario y dónde revisar el precio actual.</p>
+      </div>
+    </div>
+
+    <div class="filter-pills" id="filterPills">
+      <button class="filter-pill active" data-filter="todos">Todos (12)</button>
+      <button class="filter-pill" data-filter="freidoras">Freidoras</button>
+      <button class="filter-pill" data-filter="batidoras">Batidoras</button>
+      <button class="filter-pill" data-filter="sartenes">Sartenes y menaje</button>
+    </div>
+
+    <div class="prod-grid" id="grid-todos"></div>
+  </div>
+</section>
+
+<section class="section" id="guias">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <span class="kicker">Antes de comprar</span>
+        <h2>Guías rápidas de decisión</h2>
+        <p>Nada de fichas técnicas interminables — solo lo que necesitas para decidir en cinco minutos.</p>
+      </div>
+    </div>
+    <div class="guide-grid">
+      <article class="guide-card">
+        <span class="guide-num mono">01</span>
+        <h4>Cómo elegir tu primera freidora Ninja</h4>
+        <p>Capacidad, número de cestas y ruido: los tres factores que de verdad cambian tu día a día en la cocina.</p>
+        <a href="guia-freidoras.html" class="guide-read">Leer guía</a>
+      </article>
+      <article class="guide-card">
+        <span class="guide-num mono">02</span>
+        <h4>Batidora Ninja: ¿cuánta potencia necesitas?</h4>
+        <p>No todas las batidoras Ninja sirven para lo mismo. Te contamos qué mirar antes de pagar de más.</p>
+        <a href="guia-batidoras.html" class="guide-read">Leer guía</a>
+      </article>
+      <article class="guide-card">
+        <span class="guide-num mono">03</span>
+        <h4>Sartenes Ninja: cuidados para que duren años</h4>
+        <p>El antiadherente se estropea por errores comunes al lavarlas. Te contamos cómo evitarlo.</p>
+        <a href="guia-sartenes.html" class="guide-read">Leer guía</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section alt" id="nosotros">
+  <div class="container about">
+    <div class="about-visual" aria-hidden="true">
+      <svg width="140" height="140" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="20" cy="20" r="18" stroke="#E2A33D" stroke-width="1.4"/>
+        <circle cx="20" cy="20" r="9" fill="#4E4A43"/>
+        <line x1="20" y1="20" x2="20" y2="8" stroke="#E2A33D" stroke-width="2" stroke-linecap="round"/>
+        <circle cx="20" cy="20" r="2.5" fill="#E2A33D"/>
+      </svg>
+    </div>
+    <div>
+      <span class="kicker">Sobre nosotros</span>
+      <h2>Una guía hecha por gente que cocina, no por un catálogo</h2>
+      <p>Ninja en Casa nace para ahorrarte las horas de comparar modelos, leer reseñas contradictorias y no saber si esa freidora tan bonita realmente cabe en tu cocina.</p>
+      <p>No somos la marca Ninja ni tenemos relación oficial con ella. Somos un sitio independiente que participa en el Programa de Afiliados de Amazon: cuando compras a través de nuestros enlaces, Amazon nos da una pequeña comisión, sin que a ti te cueste nada extra.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="brand" style="margin-bottom:14px;">
+          <svg class="brand-dial" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="20" cy="20" r="18" stroke="#E2A33D" stroke-width="2"/>
+            <circle cx="20" cy="20" r="9" fill="#3C3934"/>
+            <line x1="20" y1="20" x2="20" y2="8" stroke="#E2A33D" stroke-width="2.5" stroke-linecap="round"/>
+            <circle cx="20" cy="20" r="2.5" fill="#E2A33D"/>
+          </svg>
+          <span style="font-family:'Bebas Neue',sans-serif; font-size:20px; color:var(--cream);">Ninja en Casa</span>
+        </div>
+        <p>Guías y comparativas de electrodomésticos de cocina para elegir sin perder la tarde investigando.</p>
+      </div>
+      <div>
+        <h5>Explorar</h5>
+        <ul>
+          <li><a href="#productos" data-filter-link="freidoras">Freidoras</a></li>
+          <li><a href="#productos" data-filter-link="batidoras">Batidoras</a></li>
+          <li><a href="#productos" data-filter-link="sartenes">Sartenes</a></li>
+          <li><a href="comparador.html">Comparador</a></li>
+          <li><a href="#guias">Guías</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Legal</h5>
+        <ul>
+          <li><a href="#">Aviso legal</a></li>
+          <li><a href="#">Política de privacidad</a></li>
+          <li><a href="#">Política de cookies</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Ninja en Casa</span>
+      <span>Sitio afiliado independiente — sin relación oficial con Ninja Kitchen</span>
+    </div>
+    <p class="legal-note">Como afiliados de Amazon, ganamos por compras que califican realizadas a través de los enlaces de este sitio, de acuerdo con el Programa de Afiliados de Amazon (Amazon Associates). Los precios y la disponibilidad de los productos mostrados en Amazon son responsabilidad exclusiva de Amazon y pueden variar en cualquier momento.</p>
+  </div>
+</footer>
+
+<script src="data.js"></script>
+<script>
+  function productCardHTML(p){
+    const score = overallScore(p);
+    const thumb = p.image_url
+      ? `<img src="${p.image_url}" alt="${p.name}" loading="lazy">`
+      : placeholderThumbHTML(p.subcategoria);
+    return `
+      <div class="prod-card" data-id="${p.id}" data-href="producto.html?id=${p.id}">
+        <div class="prod-card-bg">${thumb}</div>
+        <div class="prod-card-content">
+          <div class="prod-top">
+            <h4>${p.name}</h4>
+            <span class="badge badge-${p.badge.tone}">${p.badge.text}</span>
+          </div>
+          <div class="mini-dial">
+            <div class="mini-dial-face" style="--pct:${score*10}"></div>
+            <div class="mini-dial-label"><b>${score} / 10</b>Puntuación general</div>
+          </div>
+          <p class="prod-notes"><strong>Ideal si:</strong> ${p.ideal_para}</p>
+          <div class="prod-foot prod-foot-2btn">
+            <a href="${p.affiliate_link}" class="btn-amazon" data-affiliate="${p.id}" target="_blank" rel="nofollow sponsored noopener">🛒 Comprar en Amazon</a>
+            <a href="producto.html?id=${p.id}" class="btn-details">Ver detalles</a>
+          </div>
+        </div>
+      </div>`;
+  }
+
+  function renderProducts(filter){
+    filter = filter || "todos";
+    const grid = document.getElementById("grid-todos");
+    if (!grid) return;
+    const items = filter === "todos" ? products : products.filter(p => p.subcategoria === filter);
+    grid.innerHTML = items.map(productCardHTML).join("");
+  }
+  renderProducts();
+
+  // Filtro por categoría (sin recargar la página)
+  function applyFilter(name){
+    const pill = document.querySelector('.filter-pill[data-filter="' + name + '"]');
+    if (!pill) return;
+    document.querySelectorAll('.filter-pill').forEach(b => b.classList.remove('active'));
+    pill.classList.add('active');
+    renderProducts(name);
+  }
+  document.querySelectorAll('.filter-pill').forEach(btn => {
+    btn.addEventListener('click', () => applyFilter(btn.dataset.filter));
+  });
+  // Enlaces del menú y tarjetas de categoría que deben activar un filtro específico
+  document.querySelectorAll('[data-filter-link]').forEach(link => {
+    link.addEventListener('click', () => applyFilter(link.dataset.filterLink));
+  });
+
+  const totalEl = document.getElementById('totalModelos');
+  if (totalEl) totalEl.textContent = products.length;
+
+  // Toda la tarjeta lleva a la ficha, salvo que se haga clic en un botón interno (que ya tiene su propio enlace)
+  document.addEventListener('click', (e) => {
+    const card = e.target.closest('.prod-card');
+    if (card && !e.target.closest('a')) {
+      window.location.href = card.dataset.href;
+    }
+  });
+
+  const navToggle = document.getElementById('navToggle');
+  const navLinks = document.getElementById('navLinks');
+  navToggle.addEventListener('click', () => {
+    const open = navLinks.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded', open);
+  });
+  navLinks.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+      navToggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+</script>
+
+<form name="suscriptores" data-netlify="true" netlify-honeypot="bot-field" hidden>
+  <input type="text" name="bot-field" />
+  <input type="email" name="email" />
+</form>
+<script src="popup-suscriptores.js" defer></script>
+</body>
+</html>

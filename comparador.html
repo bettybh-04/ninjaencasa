@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Comparador — Ninja en Casa</title>
+<meta name="description" content="Compara hasta 4 modelos Ninja lado a lado: specs, puntuaciones y opiniones.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:wght@500;600&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  .compare-head{ padding:40px 0 8px; }
+  .compare-head h1{ font-size:clamp(30px,4vw,44px); margin:0 0 8px; }
+  .compare-head p{ color:var(--steel-2); font-size:15px; margin:0 0 28px; max-width:60ch; }
+
+  .search-row{
+    display:flex; gap:14px; flex-wrap:wrap; align-items:flex-start;
+    margin-bottom:36px;
+  }
+  .search-slot{ position:relative; width:240px; flex:none; }
+  .search-input{
+    width:100%;
+    padding:12px 38px 12px 14px;
+    border:1px solid var(--line);
+    border-radius:10px;
+    font-family:'Work Sans',sans-serif;
+    font-size:14px;
+    background:#fff;
+    color:var(--ink);
+  }
+  .search-input:focus{ outline:none; border-color:var(--crisp-dark); }
+  .search-clear{
+    position:absolute; right:10px; top:50%; transform:translateY(-50%);
+    background:none; border:none; cursor:pointer;
+    color:var(--steel-2); font-size:15px; padding:4px;
+    display:none;
+  }
+  .search-slot.filled .search-clear{ display:block; }
+  .search-dropdown{
+    position:absolute; top:calc(100% + 6px); left:0; right:0;
+    background:#fff; border:1px solid var(--line); border-radius:10px;
+    box-shadow:0 14px 28px rgba(32,29,26,0.14);
+    max-height:260px; overflow-y:auto;
+    z-index:30;
+    display:none;
+  }
+  .search-dropdown.open{ display:block; }
+  .dropdown-item{
+    padding:10px 14px; font-size:13.5px; cursor:pointer;
+    display:flex; justify-content:space-between; gap:8px;
+  }
+  .dropdown-item:hover{ background:var(--cream); }
+  .dropdown-item .di-sub{ color:var(--steel-2); font-family:'IBM Plex Mono',monospace; font-size:11.5px; }
+  .dropdown-empty{ padding:14px; font-size:13px; color:var(--steel-2); }
+
+  .btn-add-model{
+    padding:12px 18px;
+    border:1px dashed var(--line);
+    border-radius:10px;
+    background:transparent;
+    color:var(--steel-2);
+    font-size:13.5px; font-weight:600;
+    cursor:pointer;
+    height:fit-content;
+  }
+  .btn-add-model:hover{ border-color:var(--chili); color:var(--chili); }
+
+  .compare-empty-note{
+    background:var(--cream); border-radius:var(--radius);
+    padding:20px 24px; color:var(--steel-2); font-size:14.5px;
+    margin-bottom:40px;
+  }
+
+  .compare-scroll{ overflow-x:auto; padding-bottom:8px; margin-bottom:56px; }
+  .compare-grid{
+    display:grid;
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    overflow:hidden;
+    min-width:560px;
+  }
+  .cg-label{
+    background:var(--cream); font-weight:600; font-size:13px;
+    padding:14px 14px; position:sticky; left:0; z-index:2;
+    display:flex; align-items:center; gap:8px;
+    border-bottom:1px solid var(--line);
+    border-right:1px solid var(--line);
+  }
+  .cg-cell{
+    background:#fff; padding:14px 14px;
+    border-bottom:1px solid var(--line); border-right:1px solid var(--line);
+    display:flex; flex-direction:column; justify-content:center; gap:6px;
+    min-width:210px;
+  }
+  .cg-cell.best{ background:rgba(110,139,90,0.08); }
+  .cg-cell.best .cv{ color:var(--herb); font-weight:700; }
+  .cg-cell .cv{ font-size:14px; color:var(--ink); }
+  .cg-cell .cv.muted{ color:var(--steel-2); }
+
+  .cg-model-header{ text-align:center; align-items:center; }
+  .cg-model-img{
+    width:100px; height:100px; border-radius:10px; overflow:hidden;
+    background:var(--cream); margin:0 auto 10px;
+    display:flex; align-items:center; justify-content:center;
+    font-size:10px; color:var(--steel-2); text-align:center; padding:6px;
+  }
+  .cg-model-img img{ width:100%; height:100%; object-fit:cover; }
+  .cg-model-name{ font-weight:700; font-size:14.5px; margin:0 0 2px; }
+  .cg-model-marca{ font-size:11.5px; color:var(--steel-2); font-family:'IBM Plex Mono',monospace; margin-bottom:8px; }
+  .cg-featured{
+    display:inline-block; font-family:'IBM Plex Mono',monospace;
+    font-size:10.5px; font-weight:700; letter-spacing:0.05em;
+    background:rgba(110,139,90,0.15); color:var(--herb);
+    padding:3px 9px; border-radius:999px; margin-bottom:10px;
+  }
+
+  .btn-amazon-sm{
+    background:#FF9900; color:#fff; text-align:center;
+    padding:10px 14px; border-radius:9px; font-weight:700; font-size:13px;
+    text-decoration:none; display:block; margin-top:4px;
+  }
+  .btn-amazon-sm:hover{ background:#000; }
+
+  .price-badge{
+    font-family:'IBM Plex Mono',monospace; font-size:11.5px; font-weight:700;
+    padding:4px 10px; border-radius:999px; display:inline-block; width:fit-content;
+  }
+  .price-badge.bajo{ background:rgba(110,139,90,0.14); color:var(--herb); }
+  .price-badge.medio{ background:rgba(226,163,61,0.18); color:var(--crisp-dark); }
+  .price-badge.alto{ background:rgba(193,67,42,0.12); color:var(--chili); }
+
+  .stars-sm{ color:var(--crisp-dark); font-size:14px; }
+
+  .radar-multi-wrap{
+    grid-column:1 / -1;
+    padding:24px 14px 30px;
+    border-bottom:1px solid var(--line);
+    background:#fff;
+  }
+  .radar-multi-inner{ max-width:420px; margin:0 auto; }
+  .radar-legend{ display:flex; gap:16px; justify-content:center; flex-wrap:wrap; margin-top:14px; }
+  .radar-legend span{ display:flex; align-items:center; gap:6px; font-size:12.5px; color:var(--steel-2); }
+  .radar-legend .dot{ width:9px;height:9px;border-radius:50%; }
+
+  .score-bar-cell{ width:100%; }
+  .score-bar-track{ height:6px; border-radius:4px; background:var(--cream-2); overflow:hidden; margin-top:4px; }
+  .score-bar-fill{ height:100%; background:var(--crisp); }
+  .cg-cell.best .score-bar-fill{ background:var(--herb); }
+
+  .pc-list{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:6px; }
+  .pc-list li{ font-size:13px; display:flex; gap:6px; }
+  .pc-list.pros .tick{ color:var(--herb); font-weight:700; }
+  .pc-list.cons .tick{ color:var(--chili); font-weight:700; }
+
+  .compare-btn-row{ margin-top:24px; }
+
+  @media (max-width:640px){
+    .search-slot{ width:100%; }
+    .search-row{ flex-direction:column; }
+  }
+</style>
+</head>
+<body>
+
+<div class="disclosure">
+  Sitio afiliado independiente · Como afiliados de Amazon, ganamos por compras que califican
+</div>
+
+<div class="nav-wrap">
+  <nav class="nav">
+    <a href="index.html#inicio" class="brand">
+      <svg class="brand-dial" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="20" cy="20" r="18" stroke="#E2A33D" stroke-width="2"/>
+        <circle cx="20" cy="20" r="9" fill="#3C3934"/>
+        <line x1="20" y1="20" x2="20" y2="8" stroke="#E2A33D" stroke-width="2.5" stroke-linecap="round"/>
+        <circle cx="20" cy="20" r="2.5" fill="#E2A33D"/>
+      </svg>
+      <span>Ninja en Casa</span>
+    </a>
+    <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">
+      <span></span>
+    </button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html#categorias">Categorías</a></li>
+      <li><a href="index.html#freidoras">Freidoras</a></li>
+      <li><a href="index.html#batidoras">Batidoras</a></li>
+      <li><a href="index.html#sartenes">Sartenes</a></li>
+      <li><a href="comparador.html">Comparador</a></li>
+      <li><a href="perfil.html">Descubre tu perfil</a></li>
+      <li><a href="index.html#guias">Guías</a></li>
+      <li><a href="index.html#nosotros">Nosotros</a></li>
+    </ul>
+  </nav>
+</div>
+
+<div class="container">
+  <div class="compare-head">
+    <h1>Compara modelos lado a lado</h1>
+    <p>Elige entre 2 y 4 productos para ver sus specs, puntuaciones y opiniones una junto a la otra.</p>
+  </div>
+
+  <div class="search-row" id="searchRow"></div>
+  <div id="tableArea"></div>
+</div>
+
+<footer style="margin-top:40px;">
+  <div class="container">
+    <div class="footer-bottom" style="border-top:1px solid rgba(245,239,228,0.12); padding-top:20px;">
+      <span>© 2026 Ninja en Casa</span>
+      <span>Sitio afiliado independiente — sin relación oficial con Ninja Kitchen</span>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="data.js"></script>
+<script>
+  const scoreLabels = {
+    facilidad_uso: "Facilidad de uso",
+    limpieza: "Limpieza",
+    capacidad: "Capacidad",
+    calidad_precio: "Calidad-precio",
+    potencia: "Potencia",
+    durabilidad: "Durabilidad"
+  };
+  const specRows = [
+    { key:"capacidad", label:"Capacidad", icon:"⧉" },
+    { key:"potencia_w", label:"Potencia", icon:"⚡", unit:"W", better:"max" },
+    { key:"num_programas", label:"Programas", icon:"◎", better:"max" },
+    { key:"material", label:"Material", icon:"◆" },
+    { key:"apto_lavavajillas", label:"Lavavajillas", icon:"💧", bool:true },
+    { key:"peso_kg", label:"Peso", icon:"⚖", unit:"kg", better:"min" },
+    { key:"garantia_años", label:"Garantía", icon:"🛡️", unit:"años", better:"max" }
+  ];
+  const palette = ["#E2A33D", "#C1432A", "#6E8B5A", "#4E4A43"];
+
+  let slots = [null, null];
+
+  function idsInUse(excludeIndex){
+    return slots.filter((id, i) => id && i !== excludeIndex);
+  }
+
+  function readFromURL(){
+    const params = new URLSearchParams(window.location.search);
+    const found = [];
+    for (let i=1;i<=4;i++){
+      const v = params.get("m"+i);
+      if (v && getProductById(v)) found.push(v);
+    }
+    if (found.length){
+      slots = found.length < 2 ? [found[0], null] : found;
+    }
+  }
+
+  function writeToURL(){
+    const params = new URLSearchParams();
+    slots.forEach((id, i) => { if (id) params.set("m"+(i+1), id); });
+    const q = params.toString();
+    history.replaceState(null, "", q ? "?"+q : "comparador.html");
+  }
+
+  function renderSearchRow(){
+    const row = document.getElementById("searchRow");
+    let html = "";
+    slots.forEach((id, i) => {
+      const p = id ? getProductById(id) : null;
+      html += `
+        <div class="search-slot ${p ? "filled" : ""}" data-index="${i}">
+          <input class="search-input" type="text" placeholder="Buscar producto…" value="${p ? p.name.replace(/"/g,'&quot;') : ""}" data-index="${i}" autocomplete="off">
+          <button class="search-clear" data-index="${i}" aria-label="Quitar">✕</button>
+          <div class="search-dropdown" data-index="${i}"></div>
+        </div>`;
+    });
+    if (slots.length < 4 && slots.every(s => s)){
+      html += `<button class="btn-add-model" id="addModelBtn">＋ Añadir modelo</button>`;
+    }
+    row.innerHTML = html;
+    attachSearchEvents();
+  }
+
+  function attachSearchEvents(){
+    document.querySelectorAll(".search-input").forEach(input => {
+      input.addEventListener("focus", () => openDropdown(input));
+      input.addEventListener("input", () => openDropdown(input));
+    });
+    document.querySelectorAll(".search-clear").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const i = +btn.dataset.index;
+        slots.splice(i, 1);
+        while (slots.length < 2) slots.push(null);
+        onStateChange();
+      });
+    });
+    const addBtn = document.getElementById("addModelBtn");
+    if (addBtn) addBtn.addEventListener("click", () => {
+      slots.push(null);
+      onStateChange();
+    });
+    document.addEventListener("click", (e) => {
+      if (!e.target.closest(".search-slot")){
+        document.querySelectorAll(".search-dropdown").forEach(d => d.classList.remove("open"));
+      }
+    });
+  }
+
+  function openDropdown(input){
+    const i = +input.dataset.index;
+    const dd = document.querySelector('.search-dropdown[data-index="'+i+'"]');
+    const query = input.value.trim().toLowerCase();
+    const used = idsInUse(i);
+    const options = products.filter(p =>
+      !used.includes(p.id) && (!query || p.name.toLowerCase().includes(query))
+    );
+    dd.innerHTML = options.length
+      ? options.map(p => `<div class="dropdown-item" data-id="${p.id}" data-index="${i}">${p.name}<span class="di-sub">${p.subcategoria}</span></div>`).join("")
+      : `<div class="dropdown-empty">Sin resultados</div>`;
+    dd.querySelectorAll(".dropdown-item").forEach(item => {
+      item.addEventListener("click", () => {
+        slots[+item.dataset.index] = item.dataset.id;
+        onStateChange();
+      });
+    });
+    document.querySelectorAll(".search-dropdown").forEach(d => d.classList.remove("open"));
+    dd.classList.add("open");
+  }
+
+  function onStateChange(){
+    writeToURL();
+    renderSearchRow();
+    renderTable();
+  }
+
+  function starRow(avg){
+    const full = Math.round(avg);
+    let s = "";
+    for(let k=1;k<=5;k++) s += k <= full ? "★" : "☆";
+    return s;
+  }
+
+  function bestIndexNumeric(models, key, better){
+    let best = null, bestVal = null;
+    models.forEach((p, idx) => {
+      const v = p.specs ? p.specs[key] : null;
+      if (typeof v !== "number") return;
+      if (bestVal === null || (better === "max" ? v > bestVal : v < bestVal)){
+        bestVal = v; best = idx;
+      }
+    });
+    return best;
+  }
+
+  function bestScoreIndex(models, key){
+    let best = null, bestVal = -1;
+    models.forEach((p, idx) => {
+      const v = p.scores ? p.scores[key] : null;
+      if (typeof v !== "number") return;
+      if (v > bestVal){ bestVal = v; best = idx; }
+    });
+    return best;
+  }
+
+  function renderTable(){
+    const area = document.getElementById("tableArea");
+    const models = slots.filter(id => id).map(id => getProductById(id));
+
+    if (models.length < 2){
+      area.innerHTML = `<div class="compare-empty-note">Selecciona al menos 2 modelos arriba para empezar a comparar.</div>`;
+      return;
+    }
+
+    const cols = models.length;
+    const gridStyle = `grid-template-columns: 170px repeat(${cols}, minmax(210px,1fr));`;
+
+    // --- fila cabecera de modelo ---
+    let headerCells = `<div class="cg-label">Modelo</div>`;
+    models.forEach(p => {
+      const img = p.image_url
+        ? `<img src="${p.image_url}" alt="${p.name}">`
+        : placeholderThumbHTML(p.subcategoria);
+      headerCells += `
+        <div class="cg-cell cg-model-header">
+          <div class="cg-model-img">${img}</div>
+          ${p.isFeatured ? `<span class="cg-featured">DESTACADO</span>` : ""}
+          <div class="cg-model-name">${p.name}</div>
+          <div class="cg-model-marca">${p.marca || "Ninja"}</div>
+          <a href="${p.affiliate_link}" class="btn-amazon-sm" target="_blank" rel="nofollow sponsored noopener">🛒 Comprar en Amazon</a>
+        </div>`;
+    });
+
+    // --- precio ---
+    let priceCells = `<div class="cg-label">💶 Rango de precio</div>`;
+    models.forEach(p => {
+      priceCells += `<div class="cg-cell"><span class="price-badge ${p.rango_precio}">${p.rango_precio || "—"}</span></div>`;
+    });
+
+    // --- valoración ---
+    const anyReview = models.some(p => p.reviews && p.reviews.valoracion_media);
+    let reviewCells = "";
+    if (anyReview){
+      reviewCells = `<div class="cg-label">⭐ Valoración</div>`;
+      models.forEach(p => {
+        const r = p.reviews || {};
+        reviewCells += r.valoracion_media
+          ? `<div class="cg-cell"><span class="stars-sm">${starRow(r.valoracion_media)}</span> <span class="cv">${r.valoracion_media}/5</span>${r.cantidad ? `<span class="cv muted">(${r.cantidad} reseñas)</span>` : ""}</div>`
+          : `<div class="cg-cell"><span class="cv muted">—</span></div>`;
+      });
+    }
+
+    // --- specs ---
+    let specsHTML = "";
+    specRows.forEach(def => {
+      const bestIdx = def.better ? bestIndexNumeric(models, def.key, def.better) : null;
+      specsHTML += `<div class="cg-label">${def.icon} ${def.label}</div>`;
+      models.forEach((p, idx) => {
+        const raw = p.specs ? p.specs[def.key] : null;
+        let display = "—", cls = "muted";
+        if (raw !== undefined && raw !== null && raw !== ""){
+          if (def.bool){ display = raw ? "Sí" : "No"; cls=""; }
+          else { display = def.unit ? `${raw} ${def.unit}` : raw; cls=""; }
+        }
+        const isBest = bestIdx === idx;
+        specsHTML += `<div class="cg-cell ${isBest ? "best" : ""}"><span class="cv ${cls}">${display}</span></div>`;
+      });
+    });
+
+    // --- radar multi + puntuaciones ---
+    let radarLegend = models.map((p,i) => `<span><span class="dot" style="background:${palette[i]}"></span>${p.name}</span>`).join("");
+    let radarBlock = `
+      <div class="radar-multi-wrap">
+        <h3 style="margin:0 0 4px; font-size:20px;">Puntuaciones</h3>
+        <div class="radar-multi-inner">
+          <canvas id="radarMulti"></canvas>
+          <div class="radar-legend">${radarLegend}</div>
+        </div>
+      </div>`;
+
+    let scoreRowsHTML = "";
+    Object.keys(scoreLabels).forEach(key => {
+      const bestIdx = bestScoreIndex(models, key);
+      scoreRowsHTML += `<div class="cg-label">${scoreLabels[key]}</div>`;
+      models.forEach((p, idx) => {
+        const v = p.scores ? p.scores[key] : null;
+        const isBest = bestIdx === idx;
+        if (typeof v === "number"){
+          scoreRowsHTML += `
+            <div class="cg-cell ${isBest ? "best" : ""}">
+              <span class="cv">${v}/10</span>
+              <div class="score-bar-track"><div class="score-bar-fill" style="width:${v*10}%"></div></div>
+            </div>`;
+        } else {
+          scoreRowsHTML += `<div class="cg-cell"><span class="cv muted">—</span></div>`;
+        }
+      });
+    });
+
+    // --- ideal para ---
+    let idealCells = `<div class="cg-label">🙂 Ideal para</div>`;
+    models.forEach(p => {
+      idealCells += `<div class="cg-cell"><span class="cv">${p.ideal_para || "—"}</span></div>`;
+    });
+
+    // --- pros ---
+    let prosCells = `<div class="cg-label">✅ Lo mejor</div>`;
+    models.forEach(p => {
+      prosCells += `<div class="cg-cell">${
+        p.pros && p.pros.length
+          ? `<ul class="pc-list pros">${p.pros.map(x => `<li><span class="tick">✓</span>${x}</li>`).join("")}</ul>`
+          : `<span class="cv muted">—</span>`
+      }</div>`;
+    });
+
+    // --- contras ---
+    let consCells = `<div class="cg-label">❌ A tener en cuenta</div>`;
+    models.forEach(p => {
+      consCells += `<div class="cg-cell">${
+        p.contras && p.contras.length
+          ? `<ul class="pc-list cons">${p.contras.map(x => `<li><span class="tick">✕</span>${x}</li>`).join("")}</ul>`
+          : `<span class="cv muted">—</span>`
+      }</div>`;
+    });
+
+    // --- CTA final ---
+    let ctaCells = `<div class="cg-label">Comprar</div>`;
+    models.forEach(p => {
+      ctaCells += `<div class="cg-cell"><a href="${p.affiliate_link}" class="btn-amazon-sm" target="_blank" rel="nofollow sponsored noopener">🛒 Comprar en Amazon</a></div>`;
+    });
+
+    area.innerHTML = `
+      <div class="compare-scroll">
+        <div class="compare-grid" style="${gridStyle}">
+          ${headerCells}
+          ${priceCells}
+          ${reviewCells}
+          ${specsHTML}
+          ${radarBlock}
+          ${scoreRowsHTML}
+          ${idealCells}
+          ${prosCells}
+          ${consCells}
+          ${ctaCells}
+        </div>
+      </div>`;
+
+    if (window.Chart){
+      const ctx = document.getElementById("radarMulti");
+      new Chart(ctx, {
+        type: "radar",
+        data: {
+          labels: Object.values(scoreLabels),
+          datasets: models.map((p,i) => ({
+            label: p.name,
+            data: Object.keys(scoreLabels).map(k => p.scores[k] ?? 0),
+            borderColor: palette[i],
+            backgroundColor: palette[i] + "26",
+            pointBackgroundColor: palette[i],
+            borderWidth: 2
+          }))
+        },
+        options: {
+          responsive: true,
+          plugins: { legend: { display: false } },
+          scales: {
+            r: {
+              min: 0, max: 10,
+              ticks: { stepSize: 2, backdropColor: "transparent", color: "#8a8478" },
+              grid: { color: "rgba(32,29,26,0.10)" },
+              angleLines: { color: "rgba(32,29,26,0.10)" },
+              pointLabels: { color: "#3C3934", font: { size: 11, family: "Work Sans" } }
+            }
+          }
+        }
+      });
+    }
+  }
+
+  readFromURL();
+  renderSearchRow();
+  renderTable();
+
+  const navToggle = document.getElementById('navToggle');
+  const navLinks = document.getElementById('navLinks');
+  navToggle.addEventListener('click', () => {
+    const open = navLinks.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded', open);
+  });
+  navLinks.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+      navToggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+</script>
+
+<script src="popup-suscriptores.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+<!-- 
+  PEGAR ESTO UNA SOLA VEZ, EN index.html, JUSTO ANTES DE </body>
+  Es necesario para que Netlify "registre" el formulario de suscripción.
+  Va oculto (display:none) porque el formulario visible real es el que 
+  aparece en el popup (popup-suscriptores.js). Este es solo para que 
+  Netlify lo detecte al publicar el sitio.
+-->
+<form name="suscriptores" data-netlify="true" netlify-honeypot="bot-field" hidden>
+  <input type="text" name="bot-field" />
+  <input type="email" name="email" />
+</form>
