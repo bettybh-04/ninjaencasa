@@ -14,11 +14,11 @@
       marca: "Ninja",
       rango_precio: "medio",
       affiliate_link: "https://www.amazon.com/dp/B07S6529ZZ?tag=ninjaencasa-20",
-      image_url: "airfryer2 B07S6529ZZ.jpg",
+      image_url: "https://m.media-amazon.com/images/I/61YZxFGB1hL._AC_SX425_.jpg",
       gallery: [
+        "airfryer1.jpg",
         "airfryer2 B07S6529ZZ.jpg",
-        "airfryer3 B07S6529ZZ.jpg",
-        "airfryer1.jpg"
+        "airfryer3 B07S6529ZZ.jpg"
       ],
       isFeatured: true,
       badge: { text: "Familiar", tone: "herb" },
@@ -53,7 +53,7 @@
       marca: "Ninja",
       rango_precio: "alto",
       affiliate_link: "https://www.amazon.com/dp/B089TQWJKK?tag=ninjaencasa-20",
-      image_url: "doble air fryer1 B0CL12QNNK.jpg",
+      image_url: "https://m.media-amazon.com/images/I/61xMRA3NY4L._AC_SX425_.jpg",
       gallery: [
         "doble air fryer1 B0CL12QNNK.jpg",
         "doble airfryer2 B0CL12QNNK.jpg",
@@ -93,7 +93,7 @@
       marca: "Ninja",
       rango_precio: "alto",
       affiliate_link: "https://www.amazon.com/dp/B09BGSY58L?tag=ninjaencasa-20",
-      image_url: "cuchillos ninja 4 B09B7WRM8P.jpg",
+      image_url: "https://m.media-amazon.com/images/I/71muuWZZWoL._AC_SX425_.jpg",
       gallery: [
         "cuchillos ninja 4 B09B7WRM8P.jpg",
         "cuchillon ninja1 B09B7WRM8P.jpg",
@@ -132,7 +132,10 @@
       marca: "Ninja",
       rango_precio: "medio",
       affiliate_link: "https://www.amazon.com/dp/B08559K7CN?tag=ninjaencasa-20",
-      image_url: "batidora.jpg",
+      image_url: "https://m.media-amazon.com/images/I/81t4pPvkT2L._AC_SX425_.jpg",
+      gallery: [
+        "batidora.jpg"
+      ],
       isFeatured: true,
       badge: { text: "Smoothies", tone: "herb" },
       specs: {
@@ -166,7 +169,7 @@
       marca: "Ninja",
       rango_precio: "medio",
       affiliate_link: "https://www.amazon.com/dp/B0FLG6D6Z3?tag=ninjaencasa-20",
-      image_url: "ninja1 B0FLG6D6Z3.jpg",
+      image_url: "https://m.media-amazon.com/images/I/81NsZOh58WL._AC_SX425_.jpg",
       gallery: [
         "ninja1 B0FLG6D6Z3.jpg",
         "Ninjacristal 2 B0FLG6D6Z3.jpg",
@@ -239,7 +242,7 @@
       marca: "Ninja",
       rango_precio: "alto",
       affiliate_link: "https://www.amazon.com/dp/B0B3S5GWX7?tag=ninjaencasa-20",
-      image_url: "horno1 B0B3S5GWX7.jpg",
+      image_url: "https://m.media-amazon.com/images/I/71lrHjk-lcL._AC_SX425_.jpg",
       gallery: [
         "horno1 B0B3S5GWX7.jpg",
         "horno2 B0B3S5GWX7.jpg",
@@ -279,7 +282,7 @@
       marca: "Ninja",
       rango_precio: "alto",
       affiliate_link: "https://www.amazon.com/dp/B0GT27M1QD?tag=ninjaencasa-20",
-      image_url: "hornodoble B0GT27M1QD.jpg",
+      image_url: "https://m.media-amazon.com/images/I/81bMWQW5YnL._AC_SX425_.jpg",
       gallery: [
         "hornodoble B0GT27M1QD.jpg",
         "hornodoble2 B0GT27M1QD.jpg",
@@ -389,7 +392,7 @@
       marca: "Ninja",
       rango_precio: "alto",
       affiliate_link: "https://www.amazon.com/dp/B0H42H6WS4?tag=ninjaencasa-20",
-      image_url: "frozen1 B0H42H6WS4.jpg",
+      image_url: "https://m.media-amazon.com/images/I/81WYmrD2+uL._AC_SX425_.jpg",
       gallery: [
         "frozen1 B0H42H6WS4.jpg",
         "frozen2 B0H42H6WS4.jpg",
@@ -428,7 +431,7 @@
       marca: "Ninja",
       rango_precio: "alto",
       affiliate_link: "https://www.amazon.com/dp/B0DSJW8SFG?tag=ninjaencasa-20",
-      image_url: "Creami 1 B0DSJW8SFG.jpg",
+      image_url: "img/creami-scoop-swirl.jpg",
       gallery: [
         "Creami 1 B0DSJW8SFG.jpg",
         "Creami2 B0DSJW8SFG.jpg",
