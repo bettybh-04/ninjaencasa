@@ -15,6 +15,11 @@
       rango_precio: "medio",
       affiliate_link: "https://www.amazon.com/dp/B07S6529ZZ?tag=ninjaencasa-20",
       image_url: "airfryer2 B07S6529ZZ.jpg",
+      gallery: [
+        "airfryer2 B07S6529ZZ.jpg",
+        "airfryer3 B07S6529ZZ.jpg",
+        "airfryer1.jpg"
+      ],
       isFeatured: true,
       badge: { text: "Familiar", tone: "herb" },
       specs: {
@@ -49,6 +54,12 @@
       rango_precio: "alto",
       affiliate_link: "https://www.amazon.com/dp/B089TQWJKK?tag=ninjaencasa-20",
       image_url: "doble air fryer1 B0CL12QNNK.jpg",
+      gallery: [
+        "doble air fryer1 B0CL12QNNK.jpg",
+        "doble airfryer2 B0CL12QNNK.jpg",
+        "doble air fryer 3 B0CL12QNNK.jpg",
+        "doble airfryer4 B0CL12QNNK.jpg"
+      ],
       isFeatured: true,
       badge: { text: "Doble cesta", tone: "chili" },
       specs: {
@@ -83,6 +94,11 @@
       rango_precio: "alto",
       affiliate_link: "https://www.amazon.com/dp/B09BGSY58L?tag=ninjaencasa-20",
       image_url: "cuchillos ninja 4 B09B7WRM8P.jpg",
+      gallery: [
+        "cuchillos ninja 4 B09B7WRM8P.jpg",
+        "cuchillon ninja1 B09B7WRM8P.jpg",
+        "cuchillos ninja2 B09B7WRM8P.jpg"
+      ],
       isFeatured: true,
       badge: { text: "Autoafilable", tone: "chili" },
       specs: {
@@ -151,6 +167,11 @@
       rango_precio: "medio",
       affiliate_link: "https://www.amazon.com/dp/B0FLG6D6Z3?tag=ninjaencasa-20",
       image_url: "ninja1 B0FLG6D6Z3.jpg",
+      gallery: [
+        "ninja1 B0FLG6D6Z3.jpg",
+        "Ninjacristal 2 B0FLG6D6Z3.jpg",
+        "Ninjacristal 4 B0FLG6D6Z3.jpg"
+      ],
       isFeatured: true,
       badge: { text: "Novedad", tone: "chili" },
       specs: {
@@ -219,6 +240,12 @@
       rango_precio: "alto",
       affiliate_link: "https://www.amazon.com/dp/B0B3S5GWX7?tag=ninjaencasa-20",
       image_url: "horno1 B0B3S5GWX7.jpg",
+      gallery: [
+        "horno1 B0B3S5GWX7.jpg",
+        "horno2 B0B3S5GWX7.jpg",
+        "horno3 B0B3S5GWX7.jpg",
+        "horno4 B0B3S5GWX7.jpg"
+      ],
       isFeatured: true,
       badge: { text: "6 en 1", tone: "chili" },
       specs: {
@@ -253,6 +280,11 @@
       rango_precio: "alto",
       affiliate_link: "https://www.amazon.com/dp/B0GT27M1QD?tag=ninjaencasa-20",
       image_url: "hornodoble B0GT27M1QD.jpg",
+      gallery: [
+        "hornodoble B0GT27M1QD.jpg",
+        "hornodoble2 B0GT27M1QD.jpg",
+        "hornodoble3 B0GT27M1QD.jpg"
+      ],
       isFeatured: true,
       badge: { text: "12 en 1", tone: "chili" },
       specs: {
@@ -322,10 +354,7 @@
       affiliate_link: "https://www.amazon.com/dp/B0F452YBW1?tag=ninjaencasa-20",
       image_url: "https://m.media-amazon.com/images/I/71zjE0bSXEL._AC_SX425_.jpg",
       gallery: [
-        "img/luxe-cafe-2-accesorios.jpg",
-        "img/luxe-cafe-3-molinillo.jpg",
-        "img/luxe-cafe-4-panel.jpg",
-        "img/luxe-cafe-5-detalle.jpg"
+        "https://m.media-amazon.com/images/I/71zjE0bSXEL._AC_SX425_.jpg"
       ],
       isFeatured: false,
       badge: { text: "Espresso", tone: "chili" },
@@ -361,6 +390,11 @@
       rango_precio: "alto",
       affiliate_link: "https://www.amazon.com/dp/B0H42H6WS4?tag=ninjaencasa-20",
       image_url: "frozen1 B0H42H6WS4.jpg",
+      gallery: [
+        "frozen1 B0H42H6WS4.jpg",
+        "frozen2 B0H42H6WS4.jpg",
+        "frozen3 B0H42H6WS4.jpg"
+      ],
       isFeatured: false,
       badge: { text: "Novedad", tone: "herb" },
       specs: {
@@ -395,6 +429,11 @@
       rango_precio: "alto",
       affiliate_link: "https://www.amazon.com/dp/B0DSJW8SFG?tag=ninjaencasa-20",
       image_url: "Creami 1 B0DSJW8SFG.jpg",
+      gallery: [
+        "Creami 1 B0DSJW8SFG.jpg",
+        "Creami2 B0DSJW8SFG.jpg",
+        "Creami3 B0DSJW8SFG.jpg"
+      ],
       isFeatured: true,
       badge: { text: "13 en 1", tone: "herb" },
       specs: {
