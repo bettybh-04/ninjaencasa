@@ -1,4 +1,4 @@
-  /* ======================================================
+/* ======================================================
      BASE DE DATOS DE PRODUCTOS — colección "products"
      Cada objeto = un producto. Para añadir uno nuevo,
      copia un bloque completo y cambia los valores.
@@ -14,7 +14,7 @@
       marca: "Ninja",
       rango_precio: "medio",
       affiliate_link: "https://www.amazon.com/dp/B07S6529ZZ?tag=ninjaencasa-20",
-      image_url: "https://m.media-amazon.com/images/I/61YZxFGB1hL._AC_SX425_.jpg",
+      image_url: "airfryer2 B07S6529ZZ.jpg",
       isFeatured: true,
       badge: { text: "Familiar", tone: "herb" },
       specs: {
@@ -48,7 +48,7 @@
       marca: "Ninja",
       rango_precio: "alto",
       affiliate_link: "https://www.amazon.com/dp/B089TQWJKK?tag=ninjaencasa-20",
-      image_url: "https://m.media-amazon.com/images/I/61xMRA3NY4L._AC_SX425_.jpg",
+      image_url: "doble air fryer1 B0CL12QNNK.jpg",
       isFeatured: true,
       badge: { text: "Doble cesta", tone: "chili" },
       specs: {
@@ -82,7 +82,7 @@
       marca: "Ninja",
       rango_precio: "alto",
       affiliate_link: "https://www.amazon.com/dp/B09BGSY58L?tag=ninjaencasa-20",
-      image_url: "https://m.media-amazon.com/images/I/71muuWZZWoL._AC_SX425_.jpg",
+      image_url: "cuchillos ninja 4 B09B7WRM8P.jpg",
       isFeatured: true,
       badge: { text: "Autoafilable", tone: "chili" },
       specs: {
@@ -116,7 +116,7 @@
       marca: "Ninja",
       rango_precio: "medio",
       affiliate_link: "https://www.amazon.com/dp/B08559K7CN?tag=ninjaencasa-20",
-      image_url: "https://m.media-amazon.com/images/I/81t4pPvkT2L._AC_SX425_.jpg",
+      image_url: "batidora.jpg",
       isFeatured: true,
       badge: { text: "Smoothies", tone: "herb" },
       specs: {
@@ -150,7 +150,7 @@
       marca: "Ninja",
       rango_precio: "medio",
       affiliate_link: "https://www.amazon.com/dp/B0FLG6D6Z3?tag=ninjaencasa-20",
-      image_url: "https://m.media-amazon.com/images/I/81NsZOh58WL._AC_SX425_.jpg",
+      image_url: "ninja1 B0FLG6D6Z3.jpg",
       isFeatured: true,
       badge: { text: "Novedad", tone: "chili" },
       specs: {
@@ -218,7 +218,7 @@
       marca: "Ninja",
       rango_precio: "alto",
       affiliate_link: "https://www.amazon.com/dp/B0B3S5GWX7?tag=ninjaencasa-20",
-      image_url: "https://m.media-amazon.com/images/I/71lrHjk-lcL._AC_SX425_.jpg",
+      image_url: "horno1 B0B3S5GWX7.jpg",
       isFeatured: true,
       badge: { text: "6 en 1", tone: "chili" },
       specs: {
@@ -252,7 +252,7 @@
       marca: "Ninja",
       rango_precio: "alto",
       affiliate_link: "https://www.amazon.com/dp/B0GT27M1QD?tag=ninjaencasa-20",
-      image_url: "https://m.media-amazon.com/images/I/81bMWQW5YnL._AC_SX425_.jpg",
+      image_url: "hornodoble B0GT27M1QD.jpg",
       isFeatured: true,
       badge: { text: "12 en 1", tone: "chili" },
       specs: {
@@ -360,7 +360,7 @@
       marca: "Ninja",
       rango_precio: "alto",
       affiliate_link: "https://www.amazon.com/dp/B0H42H6WS4?tag=ninjaencasa-20",
-      image_url: "https://m.media-amazon.com/images/I/81WYmrD2+uL._AC_SX425_.jpg",
+      image_url: "frozen1 B0H42H6WS4.jpg",
       isFeatured: false,
       badge: { text: "Novedad", tone: "herb" },
       specs: {
@@ -394,7 +394,7 @@
       marca: "Ninja",
       rango_precio: "alto",
       affiliate_link: "https://www.amazon.com/dp/B0DSJW8SFG?tag=ninjaencasa-20",
-      image_url: "img/creami-scoop-swirl.jpg",
+      image_url: "Creami 1 B0DSJW8SFG.jpg",
       isFeatured: true,
       badge: { text: "13 en 1", tone: "herb" },
       specs: {
