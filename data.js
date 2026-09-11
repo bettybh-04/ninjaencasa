@@ -423,7 +423,6 @@
       destacado_editorial: "La opción divertida del catálogo: ideal para fiestas y reuniones en casa.",
       reviews: { valoracion_media: 4.4, cantidad: 85, resumen: "" }
     },
-    {
      {
       id: "creami-scoop-swirl",
       name: "Ninja Creami Scoop & Swirl NC701",
