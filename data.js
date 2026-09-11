@@ -424,6 +424,7 @@
       reviews: { valoracion_media: 4.4, cantidad: 85, resumen: "" }
     },
     {
+     {
       id: "creami-scoop-swirl",
       name: "Ninja Creami Scoop & Swirl NC701",
       description: "Máquina 13 en 1 para hacer helado, gelato y servir suave: convierte casi cualquier ingrediente en helado con textura de heladería.",
@@ -431,9 +432,10 @@
       marca: "Ninja",
       rango_precio: "alto",
       affiliate_link: "https://www.amazon.com/dp/B0DSJW8SFG?tag=ninjaencasa-20",
-      image_url: "img/creami-scoop-swirl.jpg",
-      gallery: [
-        "Creami 1 B0DSJW8SFG.jpg",
+      image_url: "creami-scoop-swirl.jpg",
+
+       gallery: [
+        "creami-scoop-swirl.jpg",
         "Creami2 B0DSJW8SFG.jpg",
         "Creami3 B0DSJW8SFG.jpg"
       ],
