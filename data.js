@@ -434,7 +434,6 @@
       image_url: "creami-scoop-swirl.jpg",
 
        gallery: [
-        "creami-scoop-swirl.jpg",
         "Creami2 B0DSJW8SFG.jpg",
         "Creami3 B0DSJW8SFG.jpg"
       ],
