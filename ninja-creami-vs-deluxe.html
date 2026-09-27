@@ -38,6 +38,30 @@
   .veredicto-card li{ font-size:14.5px; line-height:1.6; color:var(--ink); margin-bottom:8px; }
   .veredicto-card .btn{ align-self:flex-start; }
 
+  .hero-flex{
+    display:flex; gap:40px; align-items:center; flex-wrap:wrap;
+  }
+  .hero-text{ flex:1; min-width:280px; }
+  .hero-text h1{ max-width:none; font-size:clamp(24px,3.2vw,34px); }
+  .hero-images{
+    flex:1; min-width:260px; max-width:360px;
+    display:flex; align-items:center; justify-content:center; gap:14px;
+    position:relative;
+  }
+  .hero-images img{
+    width:130px; height:170px; object-fit:contain;
+    background:#fff; border:1px solid var(--line); border-radius:12px;
+    box-shadow:var(--shadow); padding:10px;
+  }
+  .hero-vs{
+    font-family:'Bebas Neue',sans-serif; font-size:22px; color:var(--chili);
+    flex:none;
+  }
+  @media (max-width:760px){
+    .hero-flex{ flex-direction:column-reverse; }
+    .hero-images{ max-width:100%; }
+  }
+
   .diferencia-num{
     display:inline-flex; align-items:center; justify-content:center;
     width:30px; height:30px; border-radius:50%;
@@ -88,12 +112,19 @@
 
 <main>
   <div class="article-hero">
-    <div class="container">
-      <span class="kicker">GUÍA COMPARATIVA</span>
-      <h1>Ninja Creami Original vs Deluxe (NC300 vs NC501): ¿Vale la pena pagar la diferencia?</h1>
-      <p>Comparamos capacidad, programas y tamaño de los dos modelos para que sepas exactamente cuál te conviene antes de comprar.</p>
-      <div class="article-meta">
-        <span>Actualizado 2026</span><span>Lectura de 6 min</span>
+    <div class="container hero-flex">
+      <div class="hero-text">
+        <span class="kicker">GUÍA COMPARATIVA</span>
+        <h1>Ninja Creami Original vs Deluxe (NC300 vs NC501): ¿Vale la pena pagar la diferencia?</h1>
+        <p>Comparamos capacidad, programas y tamaño de los dos modelos para que sepas exactamente cuál te conviene antes de comprar.</p>
+        <div class="article-meta">
+          <span>Actualizado 2026</span><span>Lectura de 6 min</span>
+        </div>
+      </div>
+      <div class="hero-images">
+        <img src="https://m.media-amazon.com/images/I/5180Rh4Wt7L._AC_.jpg" alt="Ninja Creami Original NC301">
+        <span class="hero-vs">VS</span>
+        <img src="https://m.media-amazon.com/images/I/81AqBcn6ncL._AC_SL1500_.jpg" alt="Ninja Creami Deluxe NC501">
       </div>
     </div>
   </div>
@@ -225,4 +256,5 @@
 <script src="popup-suscriptores.js" defer></script>
 </body>
 </html>
+
 
