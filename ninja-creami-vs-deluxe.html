@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ninja Creami vs Deluxe (NC300 vs NC501): ¿Cuál comprar en 2026? | Ninja en Casa</title>
-<meta name="description" content="Comparativa a fondo entre Ninja Creami Original y Deluxe. Analizamos capacidad de 16 oz vs 24 oz, funciones extra y cuál conviene según tu cocina.">
+<title>Ninja Creami vs Creami XL Deluxe (NC301 vs NC601): ¿Cuál comprar en 2026? | Ninja en Casa</title>
+<meta name="description" content="Comparativa a fondo entre Ninja Creami Original (NC301) y Creami XL Deluxe (NC601). Analizamos capacidad de 16 oz vs 24 oz, programas, colores y cuál conviene según tu cocina.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:wght@500;600&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -18,6 +18,7 @@
   @media (max-width:640px){ .veredicto-grid{ grid-template-columns:1fr; } }
 
   .veredicto-card{
+    position:relative;
     background:var(--paper); border:1px solid var(--line); border-radius:var(--radius);
     padding:24px; box-shadow:var(--shadow);
     display:flex; flex-direction:column;
@@ -37,6 +38,13 @@
   .veredicto-card ul{ margin:0 0 20px; padding-left:20px; flex:1; }
   .veredicto-card li{ font-size:14.5px; line-height:1.6; color:var(--ink); margin-bottom:8px; }
   .veredicto-card .btn{ align-self:flex-start; }
+
+  .veredicto-ribbon{
+    position:absolute; top:-12px; left:50%; transform:translateX(-50%);
+    background:var(--chili); color:#fff; font-size:11.5px; font-weight:700;
+    padding:5px 14px; border-radius:999px; letter-spacing:0.03em;
+    box-shadow:0 6px 14px rgba(0,0,0,0.18); white-space:nowrap;
+  }
 
   .hero-flex{
     display:flex; gap:40px; align-items:center; flex-wrap:wrap;
@@ -64,12 +72,67 @@
 
   .diferencia-num{
     display:inline-flex; align-items:center; justify-content:center;
-    width:30px; height:30px; border-radius:50%;
+    width:36px; height:36px; border-radius:50%;
     background:var(--crisp); color:var(--ink);
-    font-family:'IBM Plex Mono',monospace; font-size:13px; font-weight:700;
-    margin-right:10px; flex:none;
+    font-family:'IBM Plex Mono',monospace; font-size:15px; font-weight:700;
+    margin-right:14px; flex:none;
   }
-  .diferencia-titulo{ display:flex; align-items:center; }
+  .diferencia-titulo{ display:flex; align-items:center; margin-bottom:14px !important; }
+  .diferencia-box{
+    background:var(--paper); border:1px solid var(--line); border-radius:var(--radius);
+    padding:26px 26px 6px; margin:0 0 32px;
+  }
+  .diferencia-box p{ margin-left:50px; width:calc(100% - 50px); }
+  @media (max-width:500px){
+    .diferencia-box p{ margin-left:0; width:100%; }
+  }
+
+  /* ---------- Franja de estadísticas rápidas bajo el hero ---------- */
+  .stats-strip{
+    background:#171512;
+    padding:18px 0;
+  }
+  .stats-inner{
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:16px;
+  }
+  .stat-chip{
+    display:flex; align-items:center; gap:12px; flex:1; min-width:180px;
+  }
+  .stat-chip .stat-icon{ font-size:26px; flex:none; }
+  .stat-chip .stat-txt{ font-size:13px; color:rgba(245,239,228,0.8); line-height:1.35; }
+  .stat-chip .stat-txt strong{
+    display:block; font-family:'Bebas Neue',sans-serif; font-size:18px;
+    color:var(--crisp); letter-spacing:0.3px;
+  }
+  @media (max-width:700px){ .stats-inner{ flex-direction:column; } }
+
+  /* ---------- Ventajas y desventajas ---------- */
+  .proscons-grid{
+    display:grid; grid-template-columns:1fr 1fr; gap:20px; margin:20px 0 32px;
+  }
+  @media (max-width:700px){ .proscons-grid{ grid-template-columns:1fr; } }
+  .proscons-card{
+    background:var(--paper); border:1px solid var(--line); border-radius:var(--radius);
+    padding:22px;
+  }
+  .proscons-card h4{ font-size:17px; margin:0 0 14px; text-align:center; }
+  .proscons-card .grupo{ margin-bottom:16px; }
+  .proscons-card .grupo:last-child{ margin-bottom:0; }
+  .proscons-card .grupo-label{
+    font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.05em;
+    text-transform:uppercase; margin-bottom:8px; display:block;
+  }
+  .proscons-card .ventajas .grupo-label{ color:var(--herb); }
+  .proscons-card .desventajas .grupo-label{ color:var(--chili); }
+  .proscons-card ul{ margin:0; padding-left:20px; }
+  .proscons-card li{ font-size:14px; line-height:1.6; color:var(--ink); margin-bottom:6px; }
+
+  /* ---------- Cierre con doble CTA ---------- */
+  .cta-doble{
+    display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:24px 0 8px;
+  }
+  @media (max-width:600px){ .cta-doble{ grid-template-columns:1fr; } }
+  .cta-doble a{ justify-content:center; }
 </style>
 </head>
 <body>
@@ -115,16 +178,33 @@
     <div class="container hero-flex">
       <div class="hero-text">
         <span class="kicker">GUÍA COMPARATIVA</span>
-        <h1>Ninja Creami Original vs Deluxe (NC300 vs NC501): ¿Vale la pena pagar la diferencia?</h1>
+        <h1>Ninja Creami Original vs Creami XL Deluxe (NC301 vs NC601): ¿vale la pena pagar la diferencia?</h1>
         <p>Comparamos capacidad, programas y tamaño de los dos modelos para que sepas exactamente cuál te conviene antes de comprar.</p>
         <div class="article-meta">
           <span>Actualizado 2026</span><span>Lectura de 6 min</span>
         </div>
       </div>
       <div class="hero-images">
-        <img src="https://m.media-amazon.com/images/I/5180Rh4Wt7L._AC_.jpg" alt="Ninja Creami Original NC301">
+        <img src="https://m.media-amazon.com/images/I/7106NYA4Z2L._AC_SX425_.jpg" alt="Ninja Creami Original NC301">
         <span class="hero-vs">VS</span>
-        <img src="https://m.media-amazon.com/images/I/71DcRWggiEL._AC_SX425_.jpg" alt="Ninja Creami Deluxe NC501">
+        <img src="https://m.media-amazon.com/images/I/81+k0-E7CZL._AC_SL1500_.jpg" alt="Ninja Creami XL Deluxe NC601">
+      </div>
+    </div>
+  </div>
+
+  <div class="stats-strip">
+    <div class="container stats-inner">
+      <div class="stat-chip">
+        <span class="stat-icon">🍦</span>
+        <span class="stat-txt"><strong>16 oz → 24 oz</strong>+50% de capacidad</span>
+      </div>
+      <div class="stat-chip">
+        <span class="stat-icon">🎛️</span>
+        <span class="stat-txt"><strong>7 → 11 programas</strong>Frappé, Frozen Yogurt y más</span>
+      </div>
+      <div class="stat-chip">
+        <span class="stat-icon">📏</span>
+        <span class="stat-txt"><strong>+2 cm de altura</strong>mide tu gabinete antes</span>
       </div>
     </div>
   </div>
@@ -132,36 +212,37 @@
   <div class="article-body">
 
     <div class="callout">
-      <strong>Nota de precisión:</strong> algunas tiendas listan la versión Original como NC300 o NC301 (la diferencia es solo la cantidad de programas), y la versión Deluxe como NC500 o NC501. En esta guía usamos "Original" y "Deluxe" para que la comparación sea clara sin importar el número exacto que veas en Amazon.
+      <strong>Nota de precisión:</strong> el modelo Deluxe original (NC500/NC501) está prácticamente descontinuado. Hoy en día, el modelo Deluxe que Ninja promociona activamente — incluso en colores llamativos como Plum y Navy — es el <strong>Creami XL Deluxe (NC601)</strong>, que reemplaza al NC501. Por eso en esta guía comparamos el <strong>Original (NC301)</strong> contra el <strong>Creami XL Deluxe (NC601)</strong>, que es lo que realmente vas a encontrar disponible en Amazon en 2026.
     </div>
 
     <h2>Veredicto rápido</h2>
     <div class="veredicto-grid">
 
       <div class="veredicto-card destacada">
-        <span class="veredicto-label">Compra la Deluxe si...</span>
-        <img class="veredicto-thumb" src="https://m.media-amazon.com/images/I/71DcRWggiEL._AC_SX425_.jpg" alt="Ninja Creami Deluxe NC501">
-        <h3>Ninja Creami Deluxe</h3>
+        <span class="veredicto-ribbon">★ MÁS ELEGIDA</span>
+        <span class="veredicto-label">Compra la Creami XL Deluxe si...</span>
+        <img class="veredicto-thumb" src="https://m.media-amazon.com/images/I/81+k0-E7CZL._AC_SL1500_.jpg" alt="Ninja Creami XL Deluxe NC601">
+        <h3>Ninja Creami XL Deluxe (NC601)</h3>
         <ul>
           <li>Son <strong>3 o más personas</strong> en casa</li>
-          <li>Haces <strong>batidos de proteína a diario</strong></li>
+          <li>Haces <strong>batidos de proteína o frappés a diario</strong></li>
           <li>Buscas <strong>50% más de volumen</strong> por tanda (24 oz vs 16 oz)</li>
-          <li>Quieres opciones extra como Slushi y Creamiccino</li>
+          <li>Quieres opciones extra como Frozen Yogurt y CreamiFit</li>
         </ul>
-        <a href="#" target="_blank" rel="nofollow noopener" class="btn btn-primary">Ver precio en Amazon</a>
+        <a href="https://www.amazon.com/dp/B0HFYCWY2F?tag=ninjaencasa-20" target="_blank" rel="nofollow sponsored noopener" class="btn btn-primary">Ver precio en Amazon</a>
       </div>
 
       <div class="veredicto-card">
         <span class="veredicto-label">Compra la Original si...</span>
-        <img class="veredicto-thumb" src="https://m.media-amazon.com/images/I/5180Rh4Wt7L._AC_.jpg" alt="Ninja Creami Original NC301">
-        <h3>Ninja Creami Original</h3>
+        <img class="veredicto-thumb" src="https://m.media-amazon.com/images/I/7106NYA4Z2L._AC_SX425_.jpg" alt="Ninja Creami Original NC301">
+        <h3>Ninja Creami Original (NC301)</h3>
         <ul>
           <li>Vives <strong>solo/a o en pareja</strong></li>
           <li><strong>Espacio vertical limitado</strong> bajo gabinetes</li>
           <li>Solo quieres <strong>helados y sorbetes</strong> sin pagar de más</li>
           <li>Prefieres el precio de entrada más bajo</li>
         </ul>
-        <a href="#" target="_blank" rel="nofollow noopener" class="btn btn-outline">Ver precio en Amazon</a>
+        <a href="https://www.amazon.com/dp/B08QXB9BH5?tag=ninjaencasa-20" target="_blank" rel="nofollow sponsored noopener" class="btn btn-outline">Ver precio en Amazon</a>
       </div>
 
     </div>
@@ -171,8 +252,8 @@
       <thead>
         <tr>
           <th>Característica</th>
-          <th>Original (NC300/NC301)</th>
-          <th>Deluxe (NC500/NC501)</th>
+          <th>Original (NC301)</th>
+          <th>Creami XL Deluxe (NC601)</th>
         </tr>
       </thead>
       <tbody>
@@ -189,17 +270,17 @@
         <tr>
           <td>Programas</td>
           <td>7</td>
-          <td><strong>11</strong> (incluye Slushi, Italian Ice, Frozen Drink, Creamiccino)</td>
+          <td><strong>11</strong> (agrega Frappé, Frozen Yogurt, CreamiFit, Dairy-Free)</td>
         </tr>
         <tr>
-          <td>Procesar por mitades</td>
-          <td>No</td>
-          <td><strong>Sí</strong></td>
+          <td>Colores disponibles</td>
+          <td>1-2 (plateado/negro)</td>
+          <td><strong>Varios</strong> — Plum, Navy y más</td>
         </tr>
         <tr>
           <td>Altura</td>
           <td>40.5 cm (15.95 in)</td>
-          <td>42.4 cm (16.69 in)</td>
+          <td>42.55 cm (16.75 in)</td>
         </tr>
         <tr>
           <td>Público ideal</td>
@@ -209,21 +290,77 @@
       </tbody>
     </table>
 
-    <h2 class="diferencia-titulo"><span class="diferencia-num">1</span>Los botes de 24 oz no son intercambiables con los de 16 oz</h2>
-    <p>Esta es la diferencia que más confunde a los compradores. Los botes XL de 24 oz de la Deluxe solo encajan en la base de la Deluxe, y los botes estándar de 16 oz de la Original solo encajan en esa base. Si ya tienes botes de repuesto de un modelo anterior, no te servirán para el otro — es una decisión que conviene tomar antes de comprar, no después.</p>
+    <h2>Ventajas y desventajas de cada modelo</h2>
+    <div class="proscons-grid">
 
-    <h2 class="diferencia-titulo"><span class="diferencia-num">2</span>¿De verdad vas a usar las 4 funciones extra?</h2>
-    <p>La Deluxe agrega programas como <strong>Slushi</strong> y <strong>Creamiccino</strong> que la Original no tiene. Si te imaginas usando la máquina para bebidas heladas de café o slushies de fiesta, esa diferencia sola puede justificar el precio. Pero si solo quieres helado y sorbete clásicos, esas funciones extra pueden quedar sin usar.</p>
+      <div class="proscons-card">
+        <h4>Ninja Creami Original (NC301)</h4>
+        <div class="grupo ventajas">
+          <span class="grupo-label">✅ Ventajas</span>
+          <ul>
+            <li>Precio de entrada más bajo</li>
+            <li>Tamaño compacto, cabe en espacios reducidos</li>
+            <li>Suficiente para los postres clásicos: helado, sorbete y gelato</li>
+            <li>Menos piezas, más fácil de limpiar</li>
+          </ul>
+        </div>
+        <div class="grupo desventajas">
+          <span class="grupo-label">⚠️ Desventajas</span>
+          <ul>
+            <li>Solo 16 oz por bote — poco para 3 o más personas</li>
+            <li>Sin programas para frappés, frozen yogurt o dietas especiales</li>
+            <li>Menos opciones de color</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="proscons-card">
+        <h4>Ninja Creami XL Deluxe (NC601)</h4>
+        <div class="grupo ventajas">
+          <span class="grupo-label">✅ Ventajas</span>
+          <ul>
+            <li>24 oz por bote, ideal para familias o batidos diarios</li>
+            <li>11 programas: incluye Frappé, Frozen Yogurt, CreamiFit y Dairy-Free</li>
+            <li>Colores vibrantes (Plum, Navy) que combinan con la cocina</li>
+            <li>Es el modelo Deluxe activo — más fácil de conseguir soporte y accesorios a futuro</li>
+          </ul>
+        </div>
+        <div class="grupo desventajas">
+          <span class="grupo-label">⚠️ Desventajas</span>
+          <ul>
+            <li>Precio más alto que la Original</li>
+            <li>Ocupa un poco más de espacio vertical (+2 cm)</li>
+            <li>Sus botes XL no son intercambiables con los de la Original</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+
+    <h2 class="diferencia-titulo"><span class="diferencia-num">1</span>Los botes de 24 oz no son intercambiables con los de 16 oz</h2>
+    <div class="diferencia-box">
+      <p>Esta es la diferencia que más confunde a los compradores. Los botes XL de 24 oz del Creami XL Deluxe solo encajan en su propia base, y los botes estándar de 16 oz de la Original solo encajan en la suya. Si ya tienes botes de repuesto de un modelo anterior, no te servirán para el otro — es una decisión que conviene tomar antes de comprar, no después.</p>
+    </div>
+
+    <h2 class="diferencia-titulo"><span class="diferencia-num">2</span>¿De verdad vas a usar los 4 programas extra?</h2>
+    <div class="diferencia-box">
+      <p>El Creami XL Deluxe agrega programas como <strong>Frappé</strong>, <strong>Frozen Yogurt</strong>, <strong>CreamiFit</strong> y <strong>Dairy-Free</strong> que la Original no tiene. Si te imaginas usando la máquina para bebidas heladas de café o postres sin lácteos, esa diferencia sola puede justificar el precio. Pero si solo quieres helado y sorbete clásicos, esos programas extra pueden quedar sin usar.</p>
+    </div>
 
     <h2 class="diferencia-titulo"><span class="diferencia-num">3</span>Mide el espacio bajo tus gabinetes antes de comprar</h2>
-    <p>La diferencia de altura entre ambos modelos es de apenas <strong>1.9 cm</strong>, pero en cocinas con gabinetes bajos ese margen puede ser justo el que te falta. Antes de comprar cualquiera de los dos modelos, mide la distancia entre tu mesón y la parte inferior del gabinete con la tapa cerrada de la máquina en mente.</p>
+    <div class="diferencia-box">
+      <p>La diferencia de altura entre ambos modelos es de apenas <strong>2 cm</strong>, pero en cocinas con gabinetes bajos ese margen puede ser justo el que te falta. Antes de comprar cualquiera de los dos modelos, mide la distancia entre tu mesón y la parte inferior del gabinete con la tapa cerrada de la máquina en mente.</p>
+    </div>
 
     <h2>Consejo SEO: el truco del botón Re-Spin</h2>
     <p>Si tu helado sale con textura arenosa (común en recetas altas en proteína o bajas en azúcar), no vuelvas a correr el programa completo. Usa el botón <strong>Re-Spin</strong>: repite solo el último ciclo de procesado y suaviza la mezcla sin sobre-batirla ni derretirla de más. Es la solución más rápida cuando trabajas con batidos de proteína, que tienden a quedar más duros que un helado tradicional.</p>
 
     <div class="article-cta">
       <p>¿Ya sabes cuál modelo te conviene?</p>
-      <a href="#" target="_blank" rel="nofollow noopener" class="btn btn-primary">Ver ambos modelos en Amazon</a>
+      <div class="cta-doble">
+        <a href="https://www.amazon.com/dp/B08QXB9BH5?tag=ninjaencasa-20" target="_blank" rel="nofollow sponsored noopener" class="btn btn-outline">Ver Original en Amazon</a>
+        <a href="https://www.amazon.com/dp/B0HFYCWY2F?tag=ninjaencasa-20" target="_blank" rel="nofollow sponsored noopener" class="btn btn-primary">Ver Creami XL Deluxe en Amazon</a>
+      </div>
     </div>
 
   </div>
@@ -256,6 +393,7 @@
 <script src="popup-suscriptores.js" defer></script>
 </body>
 </html>
+
 
 
 
