@@ -29,7 +29,11 @@
     font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--herb);
     text-transform:uppercase; letter-spacing:0.06em; margin-bottom:10px; display:block;
   }
-  .veredicto-card h3{ font-size:19px; margin:0 0 14px; }
+  .veredicto-thumb{
+    width:100%; max-width:200px; height:150px; object-fit:contain;
+    background:var(--cream); border-radius:10px; margin:0 auto 16px; display:block;
+  }
+  .veredicto-card h3{ font-size:19px; margin:0 0 14px; text-align:center; }
   .veredicto-card ul{ margin:0 0 20px; padding-left:20px; flex:1; }
   .veredicto-card li{ font-size:14.5px; line-height:1.6; color:var(--ink); margin-bottom:8px; }
   .veredicto-card .btn{ align-self:flex-start; }
@@ -105,6 +109,7 @@
 
       <div class="veredicto-card destacada">
         <span class="veredicto-label">Compra la Deluxe si...</span>
+        <img class="veredicto-thumb" src="https://m.media-amazon.com/images/I/81AqBcn6ncL._AC_SL1500_.jpg" alt="Ninja Creami Deluxe NC501">
         <h3>Ninja Creami Deluxe</h3>
         <ul>
           <li>Son <strong>3 o más personas</strong> en casa</li>
@@ -117,6 +122,7 @@
 
       <div class="veredicto-card">
         <span class="veredicto-label">Compra la Original si...</span>
+        <img class="veredicto-thumb" src="https://m.media-amazon.com/images/I/5180Rh4Wt7L._AC_.jpg" alt="Ninja Creami Original NC301">
         <h3>Ninja Creami Original</h3>
         <ul>
           <li>Vives <strong>solo/a o en pareja</strong></li>
@@ -219,3 +225,4 @@
 <script src="popup-suscriptores.js" defer></script>
 </body>
 </html>
+
