@@ -185,3 +185,56 @@
 
   window.addEventListener('scroll', revisarScroll, { passive: true });
 })();
+
+
+// ============================================
+// PESTAÑA "REGALOS" + AVISO EN INICIO (temporada)
+// Se muestra sola hasta el 6 de enero de 2027 y luego desaparece.
+// Para quitarla antes: borra este bloque completo (desde esta línea hasta el final).
+// ============================================
+(function () {
+  if (new Date() >= new Date('2027-01-07T00:00:00')) return;
+
+  function listo(fn) {
+    if (document.readyState !== 'loading') fn();
+    else document.addEventListener('DOMContentLoaded', fn);
+  }
+
+  listo(function () {
+    // Estilos
+    var st = document.createElement('style');
+    st.textContent =
+      '.nav-regalos a{color:#E2A33D !important;font-weight:700 !important;}' +
+      '@media (min-width:821px) and (max-width:1500px){.nav-links{gap:15px !important;}.nav-links a{font-size:13.5px !important;}.brand span{font-size:20px !important;}}' +
+      '@media (max-width:820px){.nav-links{gap:0 !important;}.nav-links a{font-size:14.5px !important;}}' +
+      '.nec-banner-regalos{display:block;background:#E2A33D;color:#201D1A;text-align:center;' +
+      'padding:11px 16px;font-size:14.5px;text-decoration:none;line-height:1.4;}' +
+      '.nec-banner-regalos span{font-weight:700;text-decoration:underline;margin-left:8px;white-space:nowrap;}';
+    document.head.appendChild(st);
+
+    // Pestaña "Regalos" en el menú (todas las páginas que tienen menú)
+    var ul = document.getElementById('navLinks');
+    if (ul && !ul.querySelector('a[href="regalos-ninja-navidad.html"]')) {
+      var li = document.createElement('li');
+      li.className = 'nav-regalos';
+      li.innerHTML = '<a href="regalos-ninja-navidad.html">🎁 Regalos</a>';
+      // Se coloca antes de "Guías" si existe; si no, al final
+      var guias = Array.prototype.find.call(ul.querySelectorAll('li'), function (el) {
+        return /gu[ií]as/i.test(el.textContent);
+      });
+      if (guias) ul.insertBefore(li, guias);
+      else ul.appendChild(li);
+    }
+
+    // Aviso destacado solo en la página de inicio
+    var hero = document.getElementById('inicio');
+    var navWrap = document.querySelector('.nav-wrap');
+    if (hero && navWrap && !document.querySelector('.nec-banner-regalos')) {
+      var b = document.createElement('a');
+      b.className = 'nec-banner-regalos';
+      b.href = 'regalos-ninja-navidad.html';
+      b.innerHTML = '🎁 <strong>Black Friday y Navidad:</strong> regalos Ninja según quién lo recibe <span>Ver regalos →</span>';
+      navWrap.insertAdjacentElement('afterend', b);
+    }
+  });
+})();
