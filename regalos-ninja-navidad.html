@@ -10,48 +10,100 @@
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:wght@500;600&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 <style>
-  .article-hero h1{ max-width:none; }
-
-  /* ---------- Tarjetas de regalo ---------- */
-  .gift-grid{
-    display:grid; grid-template-columns:1fr 1fr; gap:18px; margin:18px 0 36px;
+  /* ---------- Hero compacto: todo visible en la primera pantalla ---------- */
+  .gift-hero{
+    background:
+      radial-gradient(circle at 85% 0%, rgba(226,163,61,0.22), transparent 50%),
+      linear-gradient(160deg, #FBF8F2 0%, #F5EFE4 60%);
+    padding:14px 0 22px;
   }
-  .gift-grid.uno{ grid-template-columns:1fr; max-width:420px; }
-  @media (max-width:640px){ .gift-grid, .gift-grid.uno{ grid-template-columns:1fr; max-width:none; } }
+  .gift-hero .container{ max-width:1100px; }
+  .gift-back{
+    display:inline-flex; align-items:center; gap:6px; color:var(--steel-2);
+    text-decoration:none; font-size:13px; font-weight:600; margin-bottom:10px;
+  }
+  .gift-hero-inner{
+    display:flex; align-items:center; justify-content:space-between; gap:32px;
+  }
+  .gift-hero-text{ flex:1; min-width:0; }
+  .gift-hero h1{
+    font-size:clamp(28px,3.8vw,44px); margin:6px 0 10px; max-width:none;
+  }
+  .gift-hero .sub{
+    font-size:16px; color:var(--steel-2); margin:0 0 16px; max-width:52ch;
+  }
+  .gift-hero .kicker{ display:block; }
+
+  .chips{ display:flex; flex-wrap:wrap; gap:8px; margin-bottom:12px; }
+  .chip{
+    font-family:'Work Sans',sans-serif; font-size:13.5px; font-weight:600;
+    padding:8px 15px; border-radius:999px; cursor:pointer;
+    border:1px solid var(--line); background:var(--paper); color:var(--ink);
+    transition:background .15s ease, color .15s ease, border-color .15s ease;
+  }
+  .chip:hover{ border-color:var(--crisp-dark); }
+  .chip.active{ background:var(--ink); color:var(--cream); border-color:var(--ink); }
+
+  .price-note{ font-size:12.5px; color:var(--steel-2); margin:0; }
+  .price-note strong{ color:var(--chili); }
+
+  .hero-collage{
+    flex:none; display:grid; grid-template-columns:repeat(2,104px); gap:10px;
+  }
+  .hero-collage a{
+    display:block; width:104px; height:104px; background:#fff;
+    border:1px solid var(--line); border-radius:12px; padding:8px;
+    box-shadow:var(--shadow); transition:transform .15s ease;
+  }
+  .hero-collage a:hover{ transform:translateY(-3px); }
+  .hero-collage img{ width:100%; height:100%; object-fit:contain; }
+  .hero-collage a:nth-child(even){ transform:translateY(12px); }
+  .hero-collage a:nth-child(even):hover{ transform:translateY(9px); }
+  @media (max-width:820px){ .hero-collage{ display:none; } }
+
+  /* ---------- Cuadrícula de regalos ---------- */
+  .gift-wrap{ max-width:1100px; margin:0 auto; padding:26px 24px 70px; }
+  .gift-grid{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:18px;
+  }
+  @media (max-width:900px){ .gift-grid{ grid-template-columns:repeat(2,1fr); } }
+  @media (max-width:560px){ .gift-grid{ grid-template-columns:1fr; } }
 
   .gift-card{
     background:var(--paper); border:1px solid var(--line); border-radius:var(--radius);
-    padding:20px; box-shadow:var(--shadow);
+    padding:16px; box-shadow:var(--shadow);
     display:flex; flex-direction:column;
   }
+  .gift-card[hidden]{ display:none; }
   .gift-thumb{
-    width:100%; height:170px; object-fit:contain;
+    width:100%; height:150px; object-fit:contain;
     background:#fff; border:1px solid var(--line); border-radius:10px;
-    padding:10px; margin-bottom:16px;
+    padding:8px; margin-bottom:12px;
   }
   .gift-tag{
-    font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--herb);
-    text-transform:uppercase; letter-spacing:0.06em; margin-bottom:6px; display:block;
+    font-family:'IBM Plex Mono',monospace; font-size:10.5px; color:var(--herb);
+    text-transform:uppercase; letter-spacing:0.06em; margin-bottom:4px; display:block;
   }
-  .gift-card h4{ font-size:17px; font-family:'Work Sans',sans-serif; font-weight:700; margin:0 0 8px; }
-  .gift-card p{ font-size:14px; color:var(--steel-2); margin:0 0 10px; line-height:1.6; }
-  .gift-card p.ideal{ color:var(--ink); }
-  .gift-card p.ideal strong{ color:var(--chili); }
-  .gift-card .btn{ align-self:flex-start; margin-top:auto; padding:11px 20px; font-size:14px; }
+  .gift-card h3{
+    font-family:'Work Sans',sans-serif; font-weight:700; text-transform:none;
+    letter-spacing:0; font-size:16px; line-height:1.25; margin:0 0 8px;
+  }
+  .gift-card p{ font-size:13.5px; color:var(--ink); margin:0 0 14px; line-height:1.55; }
+  .gift-card p strong{ color:var(--chili); }
+  .gift-card .btn{
+    margin-top:auto; justify-content:center; padding:11px 18px; font-size:14px;
+  }
 
-  .seccion-regalo{
-    display:flex; align-items:center; gap:12px; margin:44px 0 6px !important;
+  .mas-guias{
+    margin-top:34px; padding-top:22px; border-top:1px solid var(--line);
+    display:flex; flex-wrap:wrap; gap:10px 22px; align-items:center;
+    font-size:14px;
   }
-  .seccion-regalo .emoji{ font-size:28px; flex:none; }
-  .seccion-sub{ color:var(--steel-2); font-size:14.5px; margin:0 0 4px !important; }
+  .mas-guias span{ font-family:'IBM Plex Mono',monospace; font-size:11.5px; color:var(--steel-2); text-transform:uppercase; letter-spacing:0.06em; }
+  .mas-guias a{ font-weight:600; color:var(--ink); text-decoration:none; border-bottom:2px solid var(--crisp); }
 
-  .ver-mas-links{
-    display:flex; gap:14px; flex-wrap:wrap; margin:10px 0 24px;
-  }
-  .ver-mas-links a{
-    font-size:14px; font-weight:600; color:var(--ink); text-decoration:none;
-    border-bottom:2px solid var(--crisp);
-  }
+  .gift-cta{ text-align:center; margin-top:34px; }
+  .gift-cta p{ color:var(--steel-2); margin:0 0 14px; font-size:15px; }
 </style>
 </head>
 <body>
@@ -88,166 +140,134 @@
   </nav>
 </div>
 
-<div class="container back-row" style="padding:20px 0 0;">
-  <a href="index.html#guias" class="back-link" style="display:inline-flex; align-items:center; gap:8px; color:var(--steel-2); text-decoration:none; font-size:14px; font-weight:600;">← Volver a Guías</a>
-</div>
-
 <main>
-  <div class="article-hero">
+  <section class="gift-hero">
     <div class="container">
-      <span class="kicker">GUÍA DE REGALOS 2026</span>
-      <h1>Regalos Ninja para Navidad y Black Friday: qué elegir según quién lo recibe</h1>
-      <p>Regalar un electrodoméstico es fácil de equivocar. Aquí tienes ideas ordenadas por tipo de persona para que aciertes a la primera, sin dar vueltas por cien páginas.</p>
-      <div class="article-meta">
-        <span>Temporada 2026</span><span>Lectura de 4 min</span>
+      <a href="index.html#guias" class="gift-back">← Volver a Guías</a>
+      <div class="gift-hero-inner">
+        <div class="gift-hero-text">
+          <span class="kicker">GUÍA DE REGALOS 2026</span>
+          <h1>Regalos Ninja para Navidad y Black Friday</h1>
+          <p class="sub">Elige por tipo de persona y acierta a la primera, sin dar vueltas.</p>
+
+          <div class="chips" id="chips" role="group" aria-label="Filtrar regalos">
+            <button class="chip active" data-filter="todos">Todos</button>
+            <button class="chip" data-filter="postres">🍦 Postres</button>
+            <button class="chip" data-filter="familia">🍗 Familia</button>
+            <button class="chip" data-filter="bebidas">☕ Café y bebidas</button>
+            <button class="chip" data-filter="practicos">🏠 Prácticos</button>
+            <button class="chip" data-filter="grande">🎁 Regalo grande</button>
+          </div>
+
+          <p class="price-note"><strong>Sin precios aquí:</strong> cambian cada día. Toca <em>“Ver precio de hoy”</em> para ver el valor actual en Amazon.</p>
+        </div>
+
+        <div class="hero-collage" aria-hidden="true">
+          <a href="#regalos" tabindex="-1"><img src="https://m.media-amazon.com/images/I/81+k0-E7CZL._AC_SL1500_.jpg" alt=""></a>
+          <a href="#regalos" tabindex="-1"><img src="https://m.media-amazon.com/images/I/71zjE0bSXEL._AC_SX425_.jpg" alt=""></a>
+          <a href="#regalos" tabindex="-1"><img src="https://m.media-amazon.com/images/I/61YZxFGB1hL._AC_SX425_.jpg" alt=""></a>
+          <a href="#regalos" tabindex="-1"><img src="https://m.media-amazon.com/images/I/81WYmrD2+uL._AC_SX425_.jpg" alt=""></a>
+        </div>
       </div>
     </div>
-  </div>
+  </section>
 
-  <div class="article-body">
+  <div class="gift-wrap" id="regalos">
+    <div class="gift-grid" id="giftGrid">
 
-    <div class="callout">
-      <strong>Sobre los precios:</strong> aquí no ponemos cifras porque cambian cada día, y las ofertas de Black Friday y Navidad suelen durar poco. Toca <em>"Ver precio de hoy"</em> en cualquier producto para ver el valor actual en Amazon.
-    </div>
-
-    <h2 class="seccion-regalo"><span class="emoji">🍦</span>Para quien ama el postre</h2>
-    <p class="seccion-sub">Helado casero con textura de heladería, desde proteína hasta sorbetes.</p>
-    <div class="gift-grid">
-
-      <div class="gift-card">
-        <img class="gift-thumb" src="https://m.media-amazon.com/images/I/7106NYA4Z2L._AC_SX425_.jpg" alt="Ninja Creami Original NC301" loading="lazy">
-        <span class="gift-tag">Para 1-2 personas</span>
-        <h4>Ninja Creami Original (NC301)</h4>
-        <p class="ideal"><strong>Ideal si</strong> la persona vive sola o en pareja y quiere helados y sorbetes sin ocupar mucho espacio.</p>
-        <a href="https://www.amazon.com/dp/B08QXB9BH5?tag=ninjaencasa-20" target="_blank" rel="nofollow sponsored noopener" class="btn btn-primary">Ver precio de hoy</a>
-      </div>
-
-      <div class="gift-card">
-        <img class="gift-thumb" src="https://m.media-amazon.com/images/I/81+k0-E7CZL._AC_SL1500_.jpg" alt="Ninja Creami XL Deluxe NC601" loading="lazy">
-        <span class="gift-tag">Para familia</span>
-        <h4>Ninja Creami XL Deluxe (NC601)</h4>
-        <p class="ideal"><strong>Ideal si</strong> en casa son 3 o más, o si le gustan los frappés y el frozen yogurt (11 programas).</p>
+      <article class="gift-card" data-cat="postres familia">
+        <img class="gift-thumb" src="https://m.media-amazon.com/images/I/81+k0-E7CZL._AC_SL1500_.jpg" alt="Ninja Creami XL Deluxe NC601">
+        <span class="gift-tag">Postres · Familia</span>
+        <h3>Ninja Creami XL Deluxe (NC601)</h3>
+        <p><strong>Ideal si</strong> en casa son 3 o más, o le gustan los frappés y el frozen yogurt (11 programas).</p>
         <a href="https://www.amazon.com/dp/B0HFYCWY2F?tag=ninjaencasa-20" target="_blank" rel="nofollow sponsored noopener" class="btn btn-primary">Ver precio de hoy</a>
-      </div>
+      </article>
 
-    </div>
-    <div class="ver-mas-links">
-      <a href="ninja-creami-vs-deluxe.html">¿Dudas entre las dos? Lee la comparativa →</a>
-    </div>
+      <article class="gift-card" data-cat="postres">
+        <img class="gift-thumb" src="https://m.media-amazon.com/images/I/7106NYA4Z2L._AC_SX425_.jpg" alt="Ninja Creami Original NC301">
+        <span class="gift-tag">Postres</span>
+        <h3>Ninja Creami Original (NC301)</h3>
+        <p><strong>Ideal si</strong> vive sola o en pareja y quiere helados y sorbetes sin ocupar mucho espacio.</p>
+        <a href="https://www.amazon.com/dp/B08QXB9BH5?tag=ninjaencasa-20" target="_blank" rel="nofollow sponsored noopener" class="btn btn-primary">Ver precio de hoy</a>
+      </article>
 
-    <h2 class="seccion-regalo"><span class="emoji">🍗</span>Para quien cocina para toda la familia</h2>
-    <p class="seccion-sub">Freidoras de aire que ahorran turnos y tiempo en la cocina.</p>
-    <div class="gift-grid">
-
-      <div class="gift-card">
-        <img class="gift-thumb" src="https://m.media-amazon.com/images/I/61YZxFGB1hL._AC_SX425_.jpg" alt="Ninja Air Fryer Max XL" loading="lazy">
-        <span class="gift-tag">Familiar</span>
-        <h4>Ninja Air Fryer Max XL</h4>
-        <p>Freidora de aire de cesta amplia, pensada para cocinar para toda la familia sin turnos.</p>
-        <p class="ideal"><strong>Ideal si</strong> cocinan 3-4 personas y quiere una cesta grande sin ocupar media encimera.</p>
-        <a href="https://www.amazon.com/dp/B07S6529ZZ?tag=ninjaencasa-20" target="_blank" rel="nofollow sponsored noopener" class="btn btn-primary">Ver precio de hoy</a>
-      </div>
-
-      <div class="gift-card">
-        <img class="gift-thumb" src="https://m.media-amazon.com/images/I/61xMRA3NY4L._AC_SX425_.jpg" alt="Ninja Foodi Dual Zone" loading="lazy">
-        <span class="gift-tag">Doble cesta</span>
-        <h4>Ninja Foodi Dual Zone</h4>
-        <p>Dos cestas independientes: cocina dos alimentos distintos y terminan a la vez.</p>
-        <p class="ideal"><strong>Ideal si</strong> le gusta preparar plato fuerte y guarnición al mismo tiempo.</p>
-        <a href="https://www.amazon.com/dp/B089TQWJKK?tag=ninjaencasa-20" target="_blank" rel="nofollow sponsored noopener" class="btn btn-primary">Ver precio de hoy</a>
-      </div>
-
-    </div>
-    <div class="ver-mas-links">
-      <a href="guia-freidoras.html">Cómo elegir una freidora de aire →</a>
-    </div>
-
-    <h2 class="seccion-regalo"><span class="emoji">☕</span>Para el amante del café</h2>
-    <p class="seccion-sub">Una sola máquina para el espresso de la mañana y la bebida fría de la tarde.</p>
-    <div class="gift-grid uno">
-
-      <div class="gift-card">
-        <img class="gift-thumb" src="https://m.media-amazon.com/images/I/71zjE0bSXEL._AC_SX425_.jpg" alt="Ninja Luxe Cafe Premier Series" loading="lazy">
-        <span class="gift-tag">Espresso</span>
-        <h4>Ninja Luxe Cafe Premier Series</h4>
-        <p>Espresso, café por goteo e infusión fría, con molinillo integrado y espumador manos libres.</p>
-        <p class="ideal"><strong>Ideal si</strong> toma café a diario y le gustaría tener varias formas de prepararlo en un solo aparato.</p>
+      <article class="gift-card" data-cat="bebidas">
+        <img class="gift-thumb" src="https://m.media-amazon.com/images/I/71zjE0bSXEL._AC_SX425_.jpg" alt="Ninja Luxe Cafe Premier Series">
+        <span class="gift-tag">Café</span>
+        <h3>Ninja Luxe Cafe Premier Series</h3>
+        <p><strong>Ideal si</strong> toma café a diario: espresso, goteo e infusión fría con molinillo integrado.</p>
         <a href="https://www.amazon.com/dp/B0F452YBW1?tag=ninjaencasa-20" target="_blank" rel="nofollow sponsored noopener" class="btn btn-primary">Ver precio de hoy</a>
-      </div>
+      </article>
 
-    </div>
+      <article class="gift-card" data-cat="familia">
+        <img class="gift-thumb" src="https://m.media-amazon.com/images/I/61YZxFGB1hL._AC_SX425_.jpg" alt="Ninja Air Fryer Max XL">
+        <span class="gift-tag">Familia</span>
+        <h3>Ninja Air Fryer Max XL</h3>
+        <p><strong>Ideal si</strong> cocinan 3-4 personas y quiere una cesta grande sin ocupar media encimera.</p>
+        <a href="https://www.amazon.com/dp/B07S6529ZZ?tag=ninjaencasa-20" target="_blank" rel="nofollow sponsored noopener" class="btn btn-primary">Ver precio de hoy</a>
+      </article>
 
-    <h2 class="seccion-regalo"><span class="emoji">🥳</span>Para quien siempre recibe en casa</h2>
-    <p class="seccion-sub">Bebidas congeladas para fiestas, cumpleaños y reuniones.</p>
-    <div class="gift-grid uno">
+      <article class="gift-card" data-cat="familia">
+        <img class="gift-thumb" src="https://m.media-amazon.com/images/I/61xMRA3NY4L._AC_SX425_.jpg" alt="Ninja Foodi Dual Zone">
+        <span class="gift-tag">Familia · Doble cesta</span>
+        <h3>Ninja Foodi Dual Zone</h3>
+        <p><strong>Ideal si</strong> le gusta preparar plato fuerte y guarnición, y que terminen a la vez.</p>
+        <a href="https://www.amazon.com/dp/B089TQWJKK?tag=ninjaencasa-20" target="_blank" rel="nofollow sponsored noopener" class="btn btn-primary">Ver precio de hoy</a>
+      </article>
 
-      <div class="gift-card">
-        <img class="gift-thumb" src="https://m.media-amazon.com/images/I/81WYmrD2+uL._AC_SX425_.jpg" alt="Ninja SLUSHi Twist Smart" loading="lazy">
-        <span class="gift-tag">Novedad</span>
-        <h4>Ninja SLUSHi Twist Smart</h4>
-        <p>Máquina de bebidas congeladas con doble barril: prepara dos sabores de granizado a la vez.</p>
-        <p class="ideal"><strong>Ideal si</strong> la persona organiza reuniones y quiere sorprender con granizados en casa.</p>
+      <article class="gift-card" data-cat="bebidas">
+        <img class="gift-thumb" src="https://m.media-amazon.com/images/I/81WYmrD2+uL._AC_SX425_.jpg" alt="Ninja SLUSHi Twist Smart">
+        <span class="gift-tag">Fiestas · Bebidas</span>
+        <h3>Ninja SLUSHi Twist Smart</h3>
+        <p><strong>Ideal si</strong> recibe en casa y quiere sorprender con dos sabores de granizado a la vez.</p>
         <a href="https://www.amazon.com/dp/B0H42H6WS4?tag=ninjaencasa-20" target="_blank" rel="nofollow sponsored noopener" class="btn btn-primary">Ver precio de hoy</a>
-      </div>
+      </article>
 
-    </div>
-
-    <h2 class="seccion-regalo"><span class="emoji">🏠</span>Regalos prácticos para la cocina</h2>
-    <p class="seccion-sub">De esos que se usan todos los días y se agradecen de verdad.</p>
-    <div class="gift-grid">
-
-      <div class="gift-card">
-        <img class="gift-thumb" src="https://m.media-amazon.com/images/I/810I55CeafL._SX425_.jpg" alt="Ninja HydraSense WF1001" loading="lazy">
-        <span class="gift-tag">Recién llegado</span>
-        <h4>Ninja HydraSense WF1001</h4>
-        <p>Filtración de agua para encimera: más de 80 contaminantes, sin instalación ni conexión a la tubería.</p>
-        <p class="ideal"><strong>Ideal si</strong> quiere agua filtrada al instante, o vive de alquiler y no puede instalar nada.</p>
+      <article class="gift-card" data-cat="practicos">
+        <img class="gift-thumb" src="https://m.media-amazon.com/images/I/810I55CeafL._SX425_.jpg" alt="Ninja HydraSense WF1001">
+        <span class="gift-tag">Práctico · Recién llegado</span>
+        <h3>Ninja HydraSense WF1001</h3>
+        <p><strong>Ideal si</strong> quiere agua filtrada al instante, o vive de alquiler y no puede instalar nada.</p>
         <a href="https://www.amazon.com/dp/B0GXWQ4FRB?tag=ninjaencasa-20" target="_blank" rel="nofollow sponsored noopener" class="btn btn-primary">Ver precio de hoy</a>
-      </div>
+      </article>
 
-      <div class="gift-card">
-        <img class="gift-thumb" src="https://m.media-amazon.com/images/I/71muuWZZWoL._AC_SX425_.jpg" alt="Ninja Foodi NeverDull Pro set de cuchillos" loading="lazy">
-        <span class="gift-tag">Autoafilable</span>
-        <h4>Ninja NeverDull Pro — Set de 14 cuchillos</h4>
-        <p>Acero alemán con bloque afilador automático: cada cuchillo se afila al guardarlo.</p>
-        <p class="ideal"><strong>Ideal si</strong> cocina mucho y está cansada de cuchillos sin filo.</p>
+      <article class="gift-card" data-cat="practicos">
+        <img class="gift-thumb" src="https://m.media-amazon.com/images/I/71muuWZZWoL._AC_SX425_.jpg" alt="Ninja NeverDull Pro set de cuchillos">
+        <span class="gift-tag">Práctico · Autoafilable</span>
+        <h3>Ninja NeverDull Pro — 14 cuchillos</h3>
+        <p><strong>Ideal si</strong> cocina mucho y está cansada de cuchillos sin filo: se afilan al guardarlos.</p>
         <a href="https://www.amazon.com/dp/B09BGSY58L?tag=ninjaencasa-20" target="_blank" rel="nofollow sponsored noopener" class="btn btn-primary">Ver precio de hoy</a>
-      </div>
+      </article>
 
-    </div>
-    <div class="ver-mas-links">
-      <a href="ninja-hydrasense-ventajas.html">Conoce a fondo el HydraSense →</a>
-    </div>
-
-    <h2 class="seccion-regalo"><span class="emoji">🎁</span>Para el regalo grande</h2>
-    <p class="seccion-sub">Para cuando la ocasión pide algo especial, o es un regalo entre varios.</p>
-    <div class="gift-grid">
-
-      <div class="gift-card">
-        <img class="gift-thumb" src="https://m.media-amazon.com/images/I/81bMWQW5YnL._AC_SX425_.jpg" alt="Ninja Double Oven Pro Smart XL" loading="lazy">
-        <span class="gift-tag">12 en 1</span>
-        <h4>Ninja Double Oven Pro Smart XL</h4>
-        <p>Horno doble de encimera con freidora de aire: cocina dos preparaciones a la vez, cada una a su temperatura.</p>
-        <p class="ideal"><strong>Ideal si</strong> hornea seguido y quiere dos platos listos al mismo tiempo.</p>
+      <article class="gift-card" data-cat="grande familia">
+        <img class="gift-thumb" src="https://m.media-amazon.com/images/I/81bMWQW5YnL._AC_SX425_.jpg" alt="Ninja Double Oven Pro Smart XL">
+        <span class="gift-tag">Regalo grande · 12 en 1</span>
+        <h3>Ninja Double Oven Pro Smart XL</h3>
+        <p><strong>Ideal si</strong> hornea seguido y quiere dos platos listos al mismo tiempo, cada uno a su temperatura.</p>
         <a href="https://www.amazon.com/dp/B0GT27M1QD?tag=ninjaencasa-20" target="_blank" rel="nofollow sponsored noopener" class="btn btn-primary">Ver precio de hoy</a>
-      </div>
+      </article>
 
-      <div class="gift-card">
-        <img class="gift-thumb" src="https://m.media-amazon.com/images/I/71lrHjk-lcL._AC_SX425_.jpg" alt="Ninja Foodi Smart XL Grill DG551" loading="lazy">
-        <span class="gift-tag">6 en 1</span>
-        <h4>Ninja Foodi Smart XL Grill DG551</h4>
-        <p>Parrilla de interior 6 en 1 con termómetro inteligente: fríe al aire, asa, hornea, rostiza y deshidrata.</p>
-        <p class="ideal"><strong>Ideal si</strong> le encanta asar y quiere hacerlo desde la cocina, con el punto exacto.</p>
+      <article class="gift-card" data-cat="grande">
+        <img class="gift-thumb" src="https://m.media-amazon.com/images/I/71lrHjk-lcL._AC_SX425_.jpg" alt="Ninja Foodi Smart XL Grill DG551">
+        <span class="gift-tag">Regalo grande · 6 en 1</span>
+        <h3>Ninja Foodi Smart XL Grill DG551</h3>
+        <p><strong>Ideal si</strong> le encanta asar y quiere hacerlo desde la cocina, con el punto exacto.</p>
         <a href="https://www.amazon.com/dp/B0B3S5GWX7?tag=ninjaencasa-20" target="_blank" rel="nofollow sponsored noopener" class="btn btn-primary">Ver precio de hoy</a>
-      </div>
+      </article>
 
     </div>
 
-    <div class="article-cta">
+    <div class="mas-guias">
+      <span>Guías relacionadas</span>
+      <a href="ninja-creami-vs-deluxe.html">Creami Original vs Deluxe →</a>
+      <a href="guia-freidoras.html">Cómo elegir una freidora →</a>
+      <a href="ninja-hydrasense-ventajas.html">Ventajas del HydraSense →</a>
+    </div>
+
+    <div class="gift-cta">
       <p>¿No sabes cuál encaja con la persona? Responde unas preguntas y te sugerimos uno.</p>
-      <a href="perfil.html" class="btn btn-primary">Descubre tu perfil</a>
+      <a href="perfil.html" class="btn btn-outline" style="color:var(--ink); border-color:var(--line);">Descubre tu perfil</a>
     </div>
-
   </div>
 </main>
 
@@ -272,6 +292,20 @@
     a.addEventListener('click', () => {
       navLinks.classList.remove('open');
       navToggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  // Filtro por categoría
+  const chips = document.querySelectorAll('#chips .chip');
+  const cards = document.querySelectorAll('#giftGrid .gift-card');
+  chips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      const f = chip.dataset.filter;
+      chips.forEach(c => c.classList.toggle('active', c === chip));
+      cards.forEach(card => {
+        const cats = card.dataset.cat.split(' ');
+        card.hidden = !(f === 'todos' || cats.includes(f));
+      });
     });
   });
 </script>
