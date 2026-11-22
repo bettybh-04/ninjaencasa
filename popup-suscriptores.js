@@ -238,3 +238,30 @@
     }
   });
 })();
+
+
+// ============================================
+// ENLACES LEGALES EN EL PIE DE PÁGINA (permanente)
+// Agrega "Política de privacidad · Contacto" en todas las páginas.
+// ============================================
+(function () {
+  function listo(fn) {
+    if (document.readyState !== 'loading') fn();
+    else document.addEventListener('DOMContentLoaded', fn);
+  }
+  listo(function () {
+    if (document.querySelector('.nec-legal-links')) return;
+    var cont = document.querySelector('footer .container') || document.querySelector('footer');
+    if (!cont) return;
+    var p = document.createElement('p');
+    p.className = 'nec-legal-links';
+    p.style.cssText = 'font-size:13px;margin:14px 0 0;color:rgba(245,239,228,0.7);';
+    p.innerHTML =
+      '<a href="privacidad.html" style="color:inherit;text-decoration:underline;">Política de privacidad</a>' +
+      ' &nbsp;·&nbsp; ' +
+      '<a href="contacto.html" style="color:inherit;text-decoration:underline;">Contacto</a>';
+    var nota = cont.querySelector('.legal-note');
+    if (nota) cont.insertBefore(p, nota);
+    else cont.appendChild(p);
+  });
+})();
