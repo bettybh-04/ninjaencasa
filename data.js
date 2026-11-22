@@ -441,3 +441,4 @@ function placeholderThumbHTML(subcategoria){
   const icon = subcategoriaIcons[subcategoria] || subcategoriaIcons.freidoras;
   return `<div class="ph-thumb">${icon}</div>`;
 }
+
