@@ -41,17 +41,6 @@
     display:flex; align-items:center; justify-content:center;
   }
 
-  .detail-gallery{
-    display:flex; gap:10px; margin-top:12px; flex-wrap:wrap;
-  }
-  .detail-gallery img{
-    width:64px; height:64px; object-fit:contain;
-    background:#fff; border:2px solid transparent; border-radius:8px;
-    cursor:pointer; transition:border-color .15s ease;
-  }
-  .detail-gallery img:hover{ border-color:var(--steel-2); }
-  .detail-gallery img.active{ border-color:var(--chili); }
-
   .detail-marca{
     font-family:'IBM Plex Mono',monospace;
     font-size:12.5px; letter-spacing:0.1em; text-transform:uppercase;
@@ -251,7 +240,6 @@
       <li><a href="comparador.html">Comparador</a></li>
       <li><a href="perfil.html">Descubre tu perfil</a></li>
       <li><a href="index.html#guias">Guías</a></li>
-      <li><a href="novedades.html">Novedades</a></li>
       <li><a href="index.html#nosotros">Nosotros</a></li>
     </ul>
   </nav>
@@ -331,19 +319,30 @@
 
     document.title = p.name + " — Ninja en Casa";
 
-    // --- Imagen (con galería de miniaturas, si hay más de una foto) ---
-    const allImages = p.image_url ? [p.image_url, ...(p.gallery || [])] : (p.gallery || []);
-    const galleryThumbsHTML = allImages.length > 1
-      ? `<div class="detail-gallery">${allImages.map((src, i) =>
-          `<img src="${src}" alt="${p.name} foto ${i+1}" class="${i===0 ? 'active' : ''}" onclick="
-             document.getElementById('mainProductImg').src=this.src;
-             this.parentElement.querySelectorAll('img').forEach(im=>im.classList.remove('active'));
-             this.classList.add('active');
-           ">`
-        ).join("")}</div>`
-      : "";
-    const imageHTML = allImages.length
-      ? `<div><div class="detail-image"><img id="mainProductImg" src="${allImages[0]}" alt="${p.name}"></div>${galleryThumbsHTML}</div>`
+    // --- SEO: descripción, canonical y etiquetas para compartir propias de cada producto ---
+    (function(){
+      var url = "https://ninjaencasa.com/producto.html?id=" + encodeURIComponent(p.id);
+      var desc = p.name + ": " + (p.description || "");
+      if (desc.length > 158) desc = desc.slice(0, 155).replace(/\s+\S*$/, "") + "…";
+      function setMeta(sel, create, attr, value){
+        var el = document.head.querySelector(sel);
+        if (!el){ el = create(); document.head.appendChild(el); }
+        el.setAttribute(attr, value);
+      }
+      function metaName(n){ return function(){ var m=document.createElement("meta"); m.setAttribute("name", n); return m; }; }
+      function metaProp(n){ return function(){ var m=document.createElement("meta"); m.setAttribute("property", n); return m; }; }
+      setMeta('meta[name="description"]', metaName("description"), "content", desc);
+      setMeta('link[rel="canonical"]', function(){ var l=document.createElement("link"); l.setAttribute("rel","canonical"); return l; }, "href", url);
+      setMeta('meta[property="og:title"]', metaProp("og:title"), "content", p.name + " — Ninja en Casa");
+      setMeta('meta[property="og:description"]', metaProp("og:description"), "content", desc);
+      setMeta('meta[property="og:url"]', metaProp("og:url"), "content", url);
+      setMeta('meta[property="og:type"]', metaProp("og:type"), "content", "website");
+      if (p.image_url) setMeta('meta[property="og:image"]', metaProp("og:image"), "content", p.image_url);
+    })();
+
+    // --- Imagen ---
+    const imageHTML = p.image_url
+      ? `<div class="detail-image"><img src="${p.image_url}" alt="${p.name}"></div>`
       : `<div class="detail-image empty">${subcategoriaIcons[p.subcategoria].replace('42%','30%').replace('38%','26%')}</div>`;
 
     // --- Specs (solo con valor) ---

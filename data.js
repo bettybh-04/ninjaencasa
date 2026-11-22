@@ -1,4 +1,4 @@
-/* ======================================================
+  /* ======================================================
      BASE DE DATOS DE PRODUCTOS — colección "products"
      Cada objeto = un producto. Para añadir uno nuevo,
      copia un bloque completo y cambia los valores.
@@ -15,11 +15,6 @@
       rango_precio: "medio",
       affiliate_link: "https://www.amazon.com/dp/B07S6529ZZ?tag=ninjaencasa-20",
       image_url: "https://m.media-amazon.com/images/I/61YZxFGB1hL._AC_SX425_.jpg",
-      gallery: [
-        "airfryer1.jpg",
-        "airfryer2 B07S6529ZZ.jpg",
-        "airfryer3 B07S6529ZZ.jpg"
-      ],
       isFeatured: true,
       badge: { text: "Familiar", tone: "herb" },
       specs: {
@@ -54,12 +49,6 @@
       rango_precio: "alto",
       affiliate_link: "https://www.amazon.com/dp/B089TQWJKK?tag=ninjaencasa-20",
       image_url: "https://m.media-amazon.com/images/I/61xMRA3NY4L._AC_SX425_.jpg",
-      gallery: [
-        "doble air fryer1 B0CL12QNNK.jpg",
-        "doble airfryer2 B0CL12QNNK.jpg",
-        "doble air fryer 3 B0CL12QNNK.jpg",
-        "doble airfryer4 B0CL12QNNK.jpg"
-      ],
       isFeatured: true,
       badge: { text: "Doble cesta", tone: "chili" },
       specs: {
@@ -94,11 +83,6 @@
       rango_precio: "alto",
       affiliate_link: "https://www.amazon.com/dp/B09BGSY58L?tag=ninjaencasa-20",
       image_url: "https://m.media-amazon.com/images/I/71muuWZZWoL._AC_SX425_.jpg",
-      gallery: [
-        "cuchillos ninja 4 B09B7WRM8P.jpg",
-        "cuchillon ninja1 B09B7WRM8P.jpg",
-        "cuchillos ninja2 B09B7WRM8P.jpg"
-      ],
       isFeatured: true,
       badge: { text: "Autoafilable", tone: "chili" },
       specs: {
@@ -133,9 +117,6 @@
       rango_precio: "medio",
       affiliate_link: "https://www.amazon.com/dp/B08559K7CN?tag=ninjaencasa-20",
       image_url: "https://m.media-amazon.com/images/I/81t4pPvkT2L._AC_SX425_.jpg",
-      gallery: [
-        "batidora.jpg"
-      ],
       isFeatured: true,
       badge: { text: "Smoothies", tone: "herb" },
       specs: {
@@ -170,11 +151,6 @@
       rango_precio: "medio",
       affiliate_link: "https://www.amazon.com/dp/B0FLG6D6Z3?tag=ninjaencasa-20",
       image_url: "https://m.media-amazon.com/images/I/81NsZOh58WL._AC_SX425_.jpg",
-      gallery: [
-        "ninja1 B0FLG6D6Z3.jpg",
-        "Ninjacristal 2 B0FLG6D6Z3.jpg",
-        "Ninjacristal 4 B0FLG6D6Z3.jpg"
-      ],
       isFeatured: true,
       badge: { text: "Novedad", tone: "chili" },
       specs: {
@@ -202,8 +178,8 @@
     },
     {
       id: "neverstick-set3",
-      name: "Ninja Foodi NeverStick — Set 3 piezas",
-      description: "Set de sartenes antiadherentes de larga duración, resistentes a arañazos.",
+      name: "Ninja Foodi NeverStick — Set de 10 piezas",
+      description: "Set de 10 piezas de sartenes y ollas antiadherentes de larga duración, resistentes a arañazos.",
       subcategoria: "sartenes",
       marca: "Ninja",
       rango_precio: "medio",
@@ -212,12 +188,12 @@
       isFeatured: true,
       badge: { text: "Durabilidad", tone: "herb" },
       specs: {
-        capacidad: "20 / 24 / 28 cm",
+        capacidad: "Set de 10 piezas",
         potencia_w: null,
         num_programas: null,
         material: "Antiadherente NeverStick",
         apto_lavavajillas: true,
-        peso_kg: 2.4,
+        peso_kg: null,
         garantia_años: 2
       },
       scores: {
@@ -243,12 +219,6 @@
       rango_precio: "alto",
       affiliate_link: "https://www.amazon.com/dp/B0B3S5GWX7?tag=ninjaencasa-20",
       image_url: "https://m.media-amazon.com/images/I/71lrHjk-lcL._AC_SX425_.jpg",
-      gallery: [
-        "horno1 B0B3S5GWX7.jpg",
-        "horno2 B0B3S5GWX7.jpg",
-        "horno3 B0B3S5GWX7.jpg",
-        "horno4 B0B3S5GWX7.jpg"
-      ],
       isFeatured: true,
       badge: { text: "6 en 1", tone: "chili" },
       specs: {
@@ -283,11 +253,6 @@
       rango_precio: "alto",
       affiliate_link: "https://www.amazon.com/dp/B0GT27M1QD?tag=ninjaencasa-20",
       image_url: "https://m.media-amazon.com/images/I/81bMWQW5YnL._AC_SX425_.jpg",
-      gallery: [
-        "hornodoble B0GT27M1QD.jpg",
-        "hornodoble2 B0GT27M1QD.jpg",
-        "hornodoble3 B0GT27M1QD.jpg"
-      ],
       isFeatured: true,
       badge: { text: "12 en 1", tone: "chili" },
       specs: {
@@ -356,9 +321,6 @@
       rango_precio: "alto",
       affiliate_link: "https://www.amazon.com/dp/B0F452YBW1?tag=ninjaencasa-20",
       image_url: "https://m.media-amazon.com/images/I/71zjE0bSXEL._AC_SX425_.jpg",
-      gallery: [
-        "https://m.media-amazon.com/images/I/71zjE0bSXEL._AC_SX425_.jpg"
-      ],
       isFeatured: false,
       badge: { text: "Espresso", tone: "chili" },
       specs: {
@@ -393,11 +355,6 @@
       rango_precio: "alto",
       affiliate_link: "https://www.amazon.com/dp/B0H42H6WS4?tag=ninjaencasa-20",
       image_url: "https://m.media-amazon.com/images/I/81WYmrD2+uL._AC_SX425_.jpg",
-      gallery: [
-        "frozen1 B0H42H6WS4.jpg",
-        "frozen2 B0H42H6WS4.jpg",
-        "frozen3 B0H42H6WS4.jpg"
-      ],
       isFeatured: false,
       badge: { text: "Novedad", tone: "herb" },
       specs: {
@@ -423,7 +380,7 @@
       destacado_editorial: "La opción divertida del catálogo: ideal para fiestas y reuniones en casa.",
       reviews: { valoracion_media: 4.4, cantidad: 85, resumen: "" }
     },
-     {
+    {
       id: "creami-scoop-swirl",
       name: "Ninja Creami Scoop & Swirl NC701",
       description: "Máquina 13 en 1 para hacer helado, gelato y servir suave: convierte casi cualquier ingrediente en helado con textura de heladería.",
@@ -431,12 +388,7 @@
       marca: "Ninja",
       rango_precio: "alto",
       affiliate_link: "https://www.amazon.com/dp/B0DSJW8SFG?tag=ninjaencasa-20",
-      image_url: "creami-scoop-swirl.jpg",
-
-       gallery: [
-        "Creami2 B0DSJW8SFG.jpg",
-        "Creami3 B0DSJW8SFG.jpg"
-      ],
+      image_url: "img/creami-scoop-swirl.jpg",
       isFeatured: true,
       badge: { text: "13 en 1", tone: "herb" },
       specs: {

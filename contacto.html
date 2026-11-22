@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contacto | Ninja en Casa</title>
+<meta name="description" content="¿Dudas sobre qué Ninja elegir, un error en una guía o una sugerencia? Escríbenos desde este formulario.">
+<link rel="canonical" href="https://ninjaencasa.com/contacto.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Ninja en Casa">
+<meta property="og:locale" content="es_LA">
+<meta property="og:title" content="Contacto | Ninja en Casa">
+<meta property="og:description" content="¿Dudas sobre qué Ninja elegir, un error en una guía o una sugerencia? Escríbenos desde este formulario.">
+<meta property="og:url" content="https://ninjaencasa.com/contacto.html">
+<meta property="og:image" content="https://ninjaencasa.com/og-ninjaencasa.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:wght@500;600&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  .article-hero h1{ max-width:none; }
+  .article-body a{ color:var(--chili); font-weight:600; }
+
+  .contact-form{
+    background:var(--paper); border:1px solid var(--line); border-radius:var(--radius);
+    padding:26px; box-shadow:var(--shadow); margin:8px 0 28px;
+  }
+  .contact-form label{
+    display:block; font-size:13.5px; font-weight:600; margin:0 0 6px; color:var(--ink);
+  }
+  .contact-form .campo{ margin-bottom:18px; }
+  .contact-form input[type="text"],
+  .contact-form input[type="email"],
+  .contact-form textarea{
+    width:100%; font-family:'Work Sans',sans-serif; font-size:15px; color:var(--ink);
+    background:#fff; border:1px solid var(--line); border-radius:10px; padding:12px 14px;
+  }
+  .contact-form textarea{ min-height:140px; resize:vertical; }
+  .contact-form input:focus, .contact-form textarea:focus{
+    outline:none; border-color:var(--crisp-dark); box-shadow:0 0 0 3px rgba(226,163,61,0.25);
+  }
+  .contact-form button{ cursor:pointer; border:none; }
+  .contact-form button[disabled]{ opacity:.6; cursor:default; }
+  .form-msg{ margin:16px 0 0; font-size:14.5px; font-weight:600; display:none; }
+  .form-msg.ok{ color:var(--herb); display:block; }
+  .form-msg.err{ color:var(--chili); display:block; }
+</style>
+</head>
+<body>
+
+<div class="disclosure">
+  Sitio afiliado independiente · Como afiliados de Amazon, ganamos por compras que califican
+</div>
+
+<div class="nav-wrap">
+  <nav class="nav">
+    <a href="index.html#inicio" class="brand">
+      <svg class="brand-dial" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="20" cy="20" r="18" stroke="#E2A33D" stroke-width="2"/>
+        <circle cx="20" cy="20" r="9" fill="#3C3934"/>
+        <line x1="20" y1="20" x2="20" y2="8" stroke="#E2A33D" stroke-width="2.5" stroke-linecap="round"/>
+        <circle cx="20" cy="20" r="2.5" fill="#E2A33D"/>
+      </svg>
+      <span>Ninja en Casa</span>
+    </a>
+    <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">
+      <span></span>
+    </button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html#categorias">Categorías</a></li>
+      <li><a href="index.html#freidoras">Freidoras</a></li>
+      <li><a href="index.html#batidoras">Batidoras</a></li>
+      <li><a href="index.html#sartenes">Sartenes</a></li>
+      <li><a href="comparador.html">Comparador</a></li>
+      <li><a href="perfil.html">Descubre tu perfil</a></li>
+      <li><a href="index.html#guias">Guías</a></li>
+      <li><a href="novedades.html">Novedades</a></li>
+      <li><a href="index.html#nosotros">Nosotros</a></li>
+    </ul>
+  </nav>
+</div>
+
+<main>
+  <div class="article-hero">
+    <div class="container">
+      <span class="kicker">CONTACTO</span>
+      <h1>Escríbenos</h1>
+      <p>¿Dudas sobre qué Ninja elegir, un error en una guía o una sugerencia? Cuéntanos y te respondemos por correo.</p>
+    </div>
+  </div>
+
+  <div class="article-body">
+
+    <form class="contact-form" id="contactForm" name="contacto" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+      <input type="hidden" name="form-name" value="contacto">
+      <p style="display:none"><label>No llenar: <input name="bot-field"></label></p>
+
+      <div class="campo">
+        <label for="nombre">Tu nombre</label>
+        <input type="text" id="nombre" name="nombre" required autocomplete="name">
+      </div>
+      <div class="campo">
+        <label for="correo">Tu correo electrónico</label>
+        <input type="email" id="correo" name="email" required autocomplete="email">
+      </div>
+      <div class="campo">
+        <label for="mensaje">Tu mensaje</label>
+        <textarea id="mensaje" name="mensaje" required></textarea>
+      </div>
+
+      <button type="submit" class="btn btn-primary" id="enviarBtn">Enviar mensaje</button>
+      <p class="form-msg" id="formMsg" role="status"></p>
+    </form>
+
+    <p style="font-size:14px; color:var(--steel-2);">Usamos tus datos solo para responderte. Más detalles en la <a href="privacidad.html">política de privacidad</a>.</p>
+
+  </div>
+</main>
+
+<footer style="margin-top:0;">
+  <div class="container">
+    <div class="footer-bottom" style="border-top:1px solid rgba(245,239,228,0.12); padding-top:20px;">
+      <span>© 2026 Ninja en Casa</span>
+      <span>Sitio afiliado independiente — sin relación oficial con Ninja Kitchen</span>
+    </div>
+    <p class="legal-note">Como afiliados de Amazon, ganamos por compras que califican realizadas a través de los enlaces de este sitio, de acuerdo con el Programa de Afiliados de Amazon (Amazon Associates).</p>
+  </div>
+</footer>
+
+<script>
+  const navToggle = document.getElementById('navToggle');
+  const navLinks = document.getElementById('navLinks');
+  navToggle.addEventListener('click', () => {
+    const open = navLinks.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded', open);
+  });
+  navLinks.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+      navToggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  // Envío del formulario (Netlify Forms) sin salir de la página
+  const form = document.getElementById('contactForm');
+  const msg = document.getElementById('formMsg');
+  const btn = document.getElementById('enviarBtn');
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    btn.disabled = true;
+    msg.className = 'form-msg';
+    const datos = new FormData(form);
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams(datos).toString()
+    }).then(function (r) {
+      if (!r.ok) throw new Error('fallo');
+      form.reset();
+      msg.textContent = '¡Gracias! Recibimos tu mensaje y te responderemos por correo.';
+      msg.className = 'form-msg ok';
+    }).catch(function () {
+      msg.textContent = 'No se pudo enviar. Inténtalo de nuevo en un momento.';
+      msg.className = 'form-msg err';
+    }).finally(function () { btn.disabled = false; });
+  });
+</script>
+<script src="popup-suscriptores.js" defer></script>
+</body>
+</html>
