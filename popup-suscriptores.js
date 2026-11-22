@@ -207,9 +207,7 @@
       '.nav-regalos a{color:#E2A33D !important;font-weight:700 !important;}' +
       '@media (min-width:821px) and (max-width:1500px){.nav-links{gap:15px !important;}.nav-links a{font-size:13.5px !important;}.brand span{font-size:20px !important;}}' +
       '@media (max-width:820px){.nav-links{gap:0 !important;}.nav-links a{font-size:14.5px !important;}}' +
-      '.nec-banner-regalos{display:block;background:#E2A33D;color:#201D1A;text-align:center;' +
-      'padding:11px 16px;font-size:14.5px;text-decoration:none;line-height:1.4;}' +
-      '.nec-banner-regalos span{font-weight:700;text-decoration:underline;margin-left:8px;white-space:nowrap;}';
+      '';
     document.head.appendChild(st);
 
     // Pestaña "Regalos" en el menú (todas las páginas que tienen menú)
@@ -225,17 +223,56 @@
       if (guias) ul.insertBefore(li, guias);
       else ul.appendChild(li);
     }
+  });
+})();
 
-    // Aviso destacado solo en la página de inicio
+
+
+// ============================================
+// TARJETA NARANJA "REGALOS" EN LA PÁGINA DE INICIO (temporada)
+// Va dentro de la página de inicio, justo debajo del menú. No flota ni tapa nada.
+// Se apaga sola el 7 de enero de 2027.
+// Para quitarla antes: borra este bloque completo (hasta la próxima línea de ====).
+// ============================================
+(function () {
+  if (new Date() >= new Date('2027-01-07T00:00:00')) return;
+
+  function listo(fn) {
+    if (document.readyState !== 'loading') fn();
+    else document.addEventListener('DOMContentLoaded', fn);
+  }
+
+  listo(function () {
     var hero = document.getElementById('inicio');
     var navWrap = document.querySelector('.nav-wrap');
-    if (hero && navWrap && !document.querySelector('.nec-banner-regalos')) {
-      var b = document.createElement('a');
-      b.className = 'nec-banner-regalos';
-      b.href = 'regalos-ninja-navidad.html';
-      b.innerHTML = '🎁 <strong>Black Friday y Navidad:</strong> regalos Ninja según quién lo recibe <span>Ver regalos →</span>';
-      navWrap.insertAdjacentElement('afterend', b);
-    }
+    if (!hero || !navWrap || document.querySelector('.nec-home-card')) return;
+
+    var st = document.createElement('style');
+    st.textContent =
+      '.nec-home-wrap{background:#201D1A;padding:14px 18px 0;}' +
+      '.nec-home-card{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:18px;' +
+      'background:linear-gradient(135deg,#FFB02E,#F57C0B);color:#201D1A;border-radius:16px;padding:16px 22px;' +
+      'text-decoration:none;box-shadow:0 8px 24px rgba(0,0,0,.3);font-family:"Work Sans",system-ui,sans-serif;}' +
+      '.nec-home-card .nec-tag{display:inline-block;background:#201D1A;color:#FFB02E;font-size:11.5px;font-weight:800;' +
+      'letter-spacing:1.2px;padding:4px 9px;border-radius:999px;margin-bottom:6px;}' +
+      '.nec-home-card .nec-tit{font-size:22px;font-weight:800;line-height:1.2;margin:0 0 3px;}' +
+      '.nec-home-card .nec-sub{font-size:14.5px;line-height:1.35;margin:0;}' +
+      '.nec-home-card .nec-btn{flex:none;background:#201D1A;color:#fff;font-weight:700;font-size:15px;' +
+      'padding:12px 20px;border-radius:10px;white-space:nowrap;}' +
+      '.nec-home-card:hover .nec-btn{background:#000;}' +
+      '@media (max-width:640px){.nec-home-card{flex-direction:column;align-items:flex-start;gap:12px;padding:14px 16px;}' +
+      '.nec-home-card .nec-tit{font-size:19px;}.nec-home-card .nec-btn{width:100%;text-align:center;box-sizing:border-box;}}';
+    document.head.appendChild(st);
+
+    var w = document.createElement('div');
+    w.className = 'nec-home-wrap';
+    w.innerHTML =
+      '<a class="nec-home-card" href="regalos-ninja-navidad.html">' +
+      '<div><span class="nec-tag">🎁 BLACK FRIDAY Y NAVIDAD</span>' +
+      '<p class="nec-tit">Regalos Ninja según quién lo recibe</p>' +
+      '<p class="nec-sub">Postres, café, familia y fiestas. Mira el precio de hoy en Amazon.</p></div>' +
+      '<span class="nec-btn">Ver regalos →</span></a>';
+    navWrap.insertAdjacentElement('afterend', w);
   });
 })();
 
@@ -265,4 +302,5 @@
     else cont.appendChild(p);
   });
 })();
+
 
