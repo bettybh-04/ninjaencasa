@@ -7,6 +7,9 @@
 
 (function () {
   // No mostrar si ya se suscribió o si cerró el popup hace menos de 7 días
+  // No mostrar el popup en las páginas de contacto y privacidad (taparía el formulario)
+  if (/contacto|privacidad/.test(location.pathname)) return;
+
   const yaSuscrito = localStorage.getItem('nec_suscrito');
   const cerradoEn = localStorage.getItem('nec_popup_cerrado');
   const sieteDiasMs = 7 * 24 * 60 * 60 * 1000;
@@ -302,5 +305,3 @@
     else cont.appendChild(p);
   });
 })();
-
-

@@ -42,9 +42,9 @@
   }
   .contact-form button{ cursor:pointer; border:none; }
   .contact-form button[disabled]{ opacity:.6; cursor:default; }
-  .form-msg{ margin:16px 0 0; font-size:14.5px; font-weight:600; display:none; }
-  .form-msg.ok{ color:var(--herb); display:block; }
-  .form-msg.err{ color:var(--chili); display:block; }
+  .form-msg{ margin:16px 0 0; font-size:15.5px; font-weight:600; display:none; padding:14px 16px; border-radius:10px; }
+  .form-msg.ok{ color:#14532d; background:#dcfce7; border:1px solid #86efac; display:block; }
+  .form-msg.err{ color:#7f1d1d; background:#fee2e2; border:1px solid #fca5a5; display:block; }
 </style>
 </head>
 <body>
@@ -160,9 +160,11 @@
       form.reset();
       msg.textContent = '¡Gracias! Recibimos tu mensaje y te responderemos por correo.';
       msg.className = 'form-msg ok';
+      msg.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }).catch(function () {
       msg.textContent = 'No se pudo enviar. Inténtalo de nuevo en un momento.';
       msg.className = 'form-msg err';
+      msg.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }).finally(function () { btn.disabled = false; });
   });
 </script>
