@@ -388,7 +388,7 @@
       marca: "Ninja",
       rango_precio: "alto",
       affiliate_link: "https://www.amazon.com/dp/B0DSJW8SFG?tag=ninjaencasa-20",
-      image_url: "img/creami-scoop-swirl.jpg",
+      image_url: "creami-scoop-swirl.jpg",
       isFeatured: true,
       badge: { text: "13 en 1", tone: "herb" },
       specs: {
@@ -441,4 +441,6 @@ function placeholderThumbHTML(subcategoria){
   const icon = subcategoriaIcons[subcategoria] || subcategoriaIcons.freidoras;
   return `<div class="ph-thumb">${icon}</div>`;
 }
+
+
 
