@@ -25,8 +25,11 @@
   }
   .hero-single .hero-text{ flex:1; min-width:280px; }
   .hero-single .hero-text h1{ max-width:none; font-size:clamp(26px,3.4vw,38px); }
+  .hero-side{ flex:none; width:290px; }
+  .hero-cta{ display:block; text-align:center; background:var(--chili); color:#fff; font-weight:700; text-decoration:none; border-radius:10px; font-size:16px; padding:13px 16px; margin-top:14px; }
+  .hero-cta:hover{ filter:brightness(.92); }
   .hero-single .hero-img{
-    flex:none; width:230px; height:230px;
+    flex:none; width:290px; height:290px;
     display:flex; align-items:center; justify-content:center;
     background:#fff; border:1px solid var(--line); border-radius:16px;
     box-shadow:var(--shadow); padding:18px;
@@ -34,7 +37,8 @@
   .hero-single .hero-img img{ width:100%; height:100%; object-fit:contain; }
   @media (max-width:760px){
     .hero-single{ flex-direction:column-reverse; }
-    .hero-single .hero-img{ width:200px; height:200px; }
+    .hero-side{ width:240px; }
+    .hero-single .hero-img{ width:240px; height:240px; }
   }
 
   /* ---------- Franja de estadísticas rápidas ---------- */
@@ -124,8 +128,11 @@
           <span>Actualizado 2026</span><span>Lectura de 5 min</span>
         </div>
       </div>
+      <div class="hero-side">
       <div class="hero-img">
         <img src="https://m.media-amazon.com/images/I/810I55CeafL._SX425_.jpg" alt="Ninja HydraSense WF1001">
+      </div>
+        <a class="hero-cta" href="https://www.amazon.com/dp/B0GXWQ4FRB?tag=ninjaencasa-20" target="_blank" rel="nofollow sponsored noopener">Ver precio →</a>
       </div>
     </div>
   </div>

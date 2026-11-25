@@ -442,5 +442,3 @@ function placeholderThumbHTML(subcategoria){
   return `<div class="ph-thumb">${icon}</div>`;
 }
 
-
-

@@ -44,6 +44,12 @@
   .contact-form button[disabled]{ opacity:.6; cursor:default; }
   .form-msg{ margin:16px 0 0; font-size:15.5px; font-weight:600; display:none; padding:14px 16px; border-radius:10px; }
   .form-msg.ok{ color:#14532d; background:#dcfce7; border:1px solid #86efac; display:block; }
+  .form-toast{ position:fixed; top:84px; left:50%; transform:translate(-50%,-20px); z-index:10000; width:min(560px,calc(100vw - 32px)); box-sizing:border-box;
+    padding:16px 20px; border-radius:12px; font-weight:700; font-size:16px; text-align:center; box-shadow:0 12px 32px rgba(0,0,0,.28);
+    opacity:0; pointer-events:none; transition:opacity .3s ease, transform .3s ease; }
+  .form-toast.show{ opacity:1; transform:translate(-50%,0); }
+  .form-toast.ok{ background:#16a34a; color:#fff; }
+  .form-toast.err{ background:#dc2626; color:#fff; }
   .form-msg.err{ color:#7f1d1d; background:#fee2e2; border:1px solid #fca5a5; display:block; }
 </style>
 </head>
@@ -128,6 +134,8 @@
   </div>
 </footer>
 
+<div class="form-toast" id="formToast" role="status" aria-live="polite"></div>
+
 <script>
   const navToggle = document.getElementById('navToggle');
   const navLinks = document.getElementById('navLinks');
@@ -146,6 +154,14 @@
   const form = document.getElementById('contactForm');
   const msg = document.getElementById('formMsg');
   const btn = document.getElementById('enviarBtn');
+  const toast = document.getElementById('formToast');
+  let toastTimer;
+  function avisar(texto, tipo) {
+    toast.textContent = texto;
+    toast.className = 'form-toast ' + tipo + ' show';
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () { toast.classList.remove('show'); }, 7000);
+  }
   form.addEventListener('submit', function (e) {
     e.preventDefault();
     btn.disabled = true;
@@ -160,11 +176,11 @@
       form.reset();
       msg.textContent = '¡Gracias! Recibimos tu mensaje y te responderemos por correo.';
       msg.className = 'form-msg ok';
-      msg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      avisar('✅ ¡Gracias! Recibimos tu mensaje.', 'ok');
     }).catch(function () {
       msg.textContent = 'No se pudo enviar. Inténtalo de nuevo en un momento.';
       msg.className = 'form-msg err';
-      msg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      avisar('No se pudo enviar. Inténtalo de nuevo en un momento.', 'err');
     }).finally(function () { btn.disabled = false; });
   });
 </script>

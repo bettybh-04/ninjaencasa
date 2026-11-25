@@ -60,13 +60,16 @@
   }
   .hero-text{ flex:1; min-width:280px; }
   .hero-text h1{ max-width:none; font-size:clamp(24px,3.2vw,34px); }
+  .hero-prod{ display:flex; flex-direction:column; align-items:center; gap:10px; }
+  .hero-cta{ display:block; text-align:center; background:var(--chili); color:#fff; font-weight:700; text-decoration:none; border-radius:10px; font-size:14.5px; padding:10px 14px; width:100%; box-sizing:border-box; }
+  .hero-cta:hover{ filter:brightness(.92); }
   .hero-images{
-    flex:1; min-width:260px; max-width:360px;
+    flex:1; min-width:260px; max-width:440px;
     display:flex; align-items:center; justify-content:center; gap:14px;
     position:relative;
   }
   .hero-images img{
-    width:130px; height:170px; object-fit:contain;
+    width:170px; height:210px; object-fit:contain;
     background:#fff; border:1px solid var(--line); border-radius:12px;
     box-shadow:var(--shadow); padding:10px;
   }
@@ -194,9 +197,15 @@
         </div>
       </div>
       <div class="hero-images">
-        <img src="https://m.media-amazon.com/images/I/7106NYA4Z2L._AC_SX425_.jpg" alt="Ninja Creami Original NC301">
+        <div class="hero-prod">
+          <img src="https://m.media-amazon.com/images/I/7106NYA4Z2L._AC_SX425_.jpg" alt="Ninja Creami Original NC301">
+          <a class="hero-cta" href="https://www.amazon.com/dp/B08QXB9BH5?tag=ninjaencasa-20" target="_blank" rel="nofollow sponsored noopener">Ver precio →</a>
+        </div>
         <span class="hero-vs">VS</span>
-        <img src="https://m.media-amazon.com/images/I/81+k0-E7CZL._AC_SL1500_.jpg" alt="Ninja Creami XL Deluxe NC601">
+        <div class="hero-prod">
+          <img src="https://m.media-amazon.com/images/I/81+k0-E7CZL._AC_SL1500_.jpg" alt="Ninja Creami XL Deluxe NC601">
+          <a class="hero-cta" href="https://www.amazon.com/dp/B0HFYCWY2F?tag=ninjaencasa-20" target="_blank" rel="nofollow sponsored noopener">Ver precio →</a>
+        </div>
       </div>
     </div>
   </div>
